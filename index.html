@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UpSide – Delivery Made Personal</title>
+
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="/logo-up.png" alt="UpSide-Logo">
+    </div>
+
+    <nav>
+      <a class="active">Home</a>
+      <a>About</a>
+      <a>Services</a>
+      <a>Pricing</a>
+      <a>Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="primary-btn">Get Started</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="badge">
+        <span class="dot"></span>
+        Now available in 37 Nigerian states
+      </div>
+
+      <h1>
+        Delivery Made <br />
+        <span>Personal</span> <br />
+        & Lightning Fast
+      </h1>
+
+      <p>
+        Connect with nearby riders for quick, secure deliveries.
+        Community-powered logistics that feels personal.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="primary-btn">
+          Get Started
+          <i data-lucide="arrow-right"></i>
+        </button>
+
+        <button class="outline-btn">
+          <i data-lucide="play"></i>
+          Watch Demo
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="hero-right">
+      <div class="map-wrapper">
+
+        <svg viewBox="0 0 400 400" class="map-svg">
+          <!-- Glow background -->
+          <circle cx="200" cy="200" r="180" class="map-glow" />
+
+          <!-- Routes -->
+          <path d="M120 220 L200 140 L280 180" class="route" />
+          <path d="M140 260 L220 220 L300 240" class="route" />
+          <path d="M180 300 L240 260" class="route" />
+
+          <!-- Nodes -->
+          <circle cx="120" cy="220" r="5" class="node" />
+          <circle cx="200" cy="140" r="5" class="node" />
+          <circle cx="280" cy="180" r="5" class="node" />
+          <circle cx="300" cy="240" r="5" class="node" />
+          <circle cx="240" cy="260" r="5" class="node" />
+        </svg>
+
+      </div>
+
+      <div class="floating-card">
+        <i data-lucide="truck"></i>
+      </div>
+
+      <div class="active-riders">
+        <p>Active Riders</p>
+        <h3 id="counter">12,847</h3>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="hero-stats">
+
+      <div class="stat">
+        <div class="icon">
+          <i data-lucide="users"></i>
+        </div>
+        <h4>50K+</h4>
+        <p>Active Riders</p>
+      </div>
+
+      <div class="stat">
+        <div class="icon">
+          <i data-lucide="package"></i>
+        </div>
+        <h4>2M+</h4>
+        <p>Deliveries</p>
+      </div>
+
+      <div class="stat">
+        <div class="icon">
+          <i data-lucide="star"></i>
+        </div>
+        <h4>4.9</h4>
+        <p>App Rating</p>
+      </div>
+
+      <div class="stat">
+        <div class="icon">
+          <i data-lucide="zap"></i>
+        </div>
+        <h4>15min</h4>
+        <p>Avg Delivery</p>
+      </div>
+
+      <div class="live-network">
+        <span class="live-dot"></span>
+        <div>
+          <small>Live Network</small>
+          <strong>37 States</strong>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+
+
+
+  <!-- SERVICES -->
+  <section class="services">
+
+    <div class="services-header">
+      <span class="pill">Our Services</span>
+      <h2>
+        Everything You Need to <span>Ship Smarter</span>
+      </h2>
+      <p>
+        From quick courier runs to large-item logistics, we've got every
+        delivery need covered with our comprehensive service options.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card purple">
+        <div class="icon">
+          <i data-lucide="package"></i>
+        </div>
+        <h3>Same-Day Delivery</h3>
+        <p>
+          Get your packages delivered within hours, not days.
+          Perfect for urgent shipments.
+        </p>
+        <div class="learn-more">
+          Learn More <i data-lucide="arrow-right"></i>
+        </div>
+      </div>
+
+      <div class="service-card green">
+        <div class="icon">
+          <i data-lucide="bike"></i>
+        </div>
+        <h3>Bike Couriers</h3>
+        <p>
+          Eco-friendly and fast deliveries through city traffic.
+          Ideal for small packages.
+        </p>
+        <div class="learn-more">
+          Learn More <i data-lucide="arrow-right"></i>
+        </div>
+      </div>
+
+      <div class="service-card orange">
+        <div class="icon">
+          <i data-lucide="truck"></i>
+        </div>
+        <h3>Large Item Delivery</h3>
+        <p>
+          From furniture to appliances, our trucks handle
+          the heavy lifting for you.
+        </p>
+        <div class="learn-more">
+          Learn More <i data-lucide="arrow-right"></i>
+        </div>
+      </div>
+
+      <div class="service-card blue">
+        <div class="icon">
+          <i data-lucide="map-pin"></i>
+        </div>
+        <h3>Real-time Tracking</h3>
+        <p>
+          Track your delivery in real-time with our live map.
+          Know exactly where your package is.
+        </p>
+        <div class="learn-more">
+          Learn More <i data-lucide="arrow-right"></i>
+        </div>
+      </div>
+
+      <div class="service-card red">
+        <div class="icon">
+          <i data-lucide="wallet"></i>
+        </div>
+        <h3>Flexible Payment</h3>
+        <p>
+          Pay with cash, card, or our internal wallet.
+          Choose the method that suits you best.
+        </p>
+        <div class="learn-more">
+          Learn More <i data-lucide="arrow-right"></i>
+        </div>
+      </div>
+
+      <div class="service-card purple-alt">
+        <div class="icon">
+          <i data-lucide="clock"></i>
+        </div>
+        <h3>Scheduled Pickups</h3>
+        <p>
+          Plan ahead and schedule pickups at your convenience.
+          We work on your time.
+        </p>
+        <div class="learn-more">
+          Learn More <i data-lucide="arrow-right"></i>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  <!-- SCRIPTS -->
+
+  <script src="script.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+
+</html>
+
+</body>
+
+</html>
