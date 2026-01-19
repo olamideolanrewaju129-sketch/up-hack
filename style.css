@@ -568,6 +568,12 @@ nav .active {
   opacity: 0.8;
 }
 
+/* Staggered Reveal Animation */
+.state-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .state-card:hover {
   transform: translateY(-8px) scale(1.02);
   border-color: #4f5dff;
@@ -577,12 +583,6 @@ nav .active {
 
 .state-card:hover h3 {
   color: #2563eb;
-}
-
-/* Staggered Reveal Animation */
-.state-card.active {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* CSS-only staggered delays for up to 30 items */
@@ -615,7 +615,179 @@ nav .active {
 .state-card:nth-child(27) { transition-delay: 1.35s; }
 .state-card:nth-child(28) { transition-delay: 1.40s; }
 .state-card:nth-child(29) { transition-delay: 1.45s; }
-.state-card:nth-child(30) { transition-delay: 1.50s; }
+/* PRICING SECTION */
+.pricing {
+  padding: 120px 70px;
+  background: white;
+}
+
+.pricing-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+
+.pricing-header .pill {
+  display: inline-block;
+  padding: 8px 18px;
+  background: #f3f4f6;
+  color: #374151;
+  border-radius: 999px;
+  font-size: 14px;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.pricing-header h2 {
+  font-size: 48px;
+  margin-bottom: 18px;
+}
+
+.pricing-header h2 span {
+  color: #4f5dff;
+}
+
+.pricing-header p {
+  color: #6b7280;
+  font-size: 17px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.pricing-card.reveal {
+  /* Scroll reveal handled by JS toggling .active class */
+}
+
+.pricing-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.pricing-card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.pricing-card .price {
+  margin-bottom: 30px;
+}
+
+.pricing-card .price h4 {
+  font-size: 36px;
+  color: #1f2937;
+}
+
+.pricing-card .price span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.pricing-card .features {
+  list-style: none;
+  margin-bottom: 40px;
+  flex-grow: 1;
+}
+
+.pricing-card .features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: #374151;
+  font-size: 15px;
+}
+
+.pricing-card .features li i {
+  width: 18px;
+  height: 18px;
+  color: #22c55e;
+}
+
+.pricing-card button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Popular (Middle) Card Styles */
+.pricing-card.popular {
+  border: 2px solid #4f5dff;
+  box-shadow: 0 25px 50px rgba(79, 93, 255, 0.15);
+  transform: translateY(-20px) scale(1.05);
+  z-index: 2;
+}
+
+/* Initial state override for popular card so it still pops when active */
+.pricing-card.popular.active {
+  transform: translateY(-20px) scale(1.05); /* Restore pop effect after reveal */
+}
+
+/* Override reveal transform for popular card */
+.pricing-card.popular.reveal {
+   transform: translateY(20px) scale(1.05); /* Start lower but scaled */
+}
+
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4f5dff;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Make sure active class overrides the initial hidden state */
+.pricing-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fix active state for popular to keep its scale */
+.pricing-card.popular.active {
+  opacity: 1;
+  transform: translateY(-20px) scale(1.05);
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.pricing-card.popular:hover {
+  transform: translateY(-25px) scale(1.05);
+  box-shadow: 0 35px 60px rgba(79, 93, 255, 0.25);
+}
+
+/* Stagger reveals */
+.pricing-card:nth-child(1) { transition-delay: 0.1s; }
+.pricing-card:nth-child(2) { transition-delay: 0.2s; }
+.pricing-card:nth-child(3) { transition-delay: 0.3s; }
 
 .services {
   padding: 120px 70px;
