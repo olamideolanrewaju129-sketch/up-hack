@@ -673,9 +673,9 @@ nav .active {
   transform: translateY(40px);
 }
 
-.pricing-card.reveal {
-  /* Scroll reveal handled by JS toggling .active class */
-}
+/* .pricing-card.reveal {
+   Scroll reveal handled by JS toggling .active class 
+}  */
 
 .pricing-card h3 {
   font-size: 22px;
