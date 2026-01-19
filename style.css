@@ -569,9 +569,10 @@ nav .active {
 }
 
 .state-card:hover {
-  transform: translateY(-5px);
-  border-color: #93c5fd;
-  box-shadow: 0 20px 40px rgba(79, 93, 255, 0.15); /* Stronger hover shadow */
+  transform: translateY(-8px) scale(1.02);
+  border-color: #4f5dff;
+  box-shadow: 0 25px 50px rgba(79, 93, 255, 0.2);
+  z-index: 10;
 }
 
 .state-card:hover h3 {
