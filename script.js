@@ -13,23 +13,23 @@ const animate = setInterval(() => {
 }, 20);
 
 
-const serviceCards = document.querySelectorAll(".service-card");
+const reveals = document.querySelectorAll(".reveal, .service-card");
 
 const reveal = () => {
-  serviceCards.forEach(card => {
-    const top = card.getBoundingClientRect().top;
-    if (top < window.innerHeight - 80) {
-      card.style.opacity = 1;
-      card.style.transform = "translateY(0)";
+  const windowHeight = window.innerHeight;
+  const elementVisible = 100;
+
+  reveals.forEach((reveal) => {
+    const elementTop = reveal.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - elementVisible) {
+      reveal.classList.add("active");
+    } else {
+      reveal.classList.remove("active");
+      // Optional: Remove else block if you want them to stay visible once revealed
     }
   });
 };
 
-serviceCards.forEach(card => {
-  card.style.opacity = 0;
-  card.style.transform = "translateY(40px)";
-  card.style.transition = "0.6s ease";
-});
-
 window.addEventListener("scroll", reveal);
-reveal();
+reveal(); // Trigger once on load
