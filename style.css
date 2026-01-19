@@ -140,9 +140,19 @@ nav .active {
 
 /* MAP */
 .map-wrapper {
-  width: 420px;
-  height: 420px;
+  width: 500px;
+  height: 500px;
   position: relative;
+  background: linear-gradient(135deg, #4f5dff, #8b5cf6);
+  border-radius: 45px;
+  box-shadow: 0 30px 60px rgba(79, 93, 255, 0.3);
+  overflow: hidden;
+  animation: bgPulse 8s infinite alternate;
+}
+
+@keyframes bgPulse {
+  0% { background-size: 100% 100%; }
+  100% { background-size: 120% 120%; }
 }
 
 .map-svg {
@@ -152,15 +162,14 @@ nav .active {
 
 .map-glow {
   fill: none;
-  stroke: #c7d2fe;
+  stroke: rgba(255, 255, 255, 0.15);
   stroke-width: 2;
-  opacity: 0.5;
 }
 
 /* ROUTES */
 .route {
   fill: none;
-  stroke: #4f5dff;
+  stroke: rgba(255, 255, 255, 0.5);
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-dasharray: 6;
@@ -174,9 +183,19 @@ nav .active {
 
 /* NODES */
 .node {
-  fill: #4f5dff;
+  fill: white;
   animation: pulse 2s infinite ease-in-out;
 }
+
+/* Stagger pulsing for nodes */
+.node:nth-child(1) { animation-delay: 0s; }
+.node:nth-child(2) { animation-delay: 0.4s; }
+.node:nth-child(3) { animation-delay: 0.8s; }
+.node:nth-child(4) { animation-delay: 1.2s; }
+.node:nth-child(5) { animation-delay: 0.2s; }
+.node:nth-child(6) { animation-delay: 0.6s; }
+.node:nth-child(7) { animation-delay: 1.0s; }
+.node:nth-child(8) { animation-delay: 1.4s; }
 
 @keyframes pulse {
   0% {
@@ -184,8 +203,9 @@ nav .active {
     opacity: 0.6; 
   }
   50% { 
-    r: 6; 
+    r: 7; 
     opacity: 1; 
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.8));
   }
   100% { 
     r: 4; 
@@ -197,11 +217,12 @@ nav .active {
 .floating-card {
   position: absolute;
   top: 60px;
-  right: 40px;
-  background: #4f5dff;
+  right: -20px;
+  background: white;
   padding: 14px;
   border-radius: 14px;
-  color: white;
+  color: #4f5dff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   animation: float 3s ease-in-out infinite;
 }
 
