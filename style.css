@@ -2007,5 +2007,112 @@ nav .active {
   }
 }
 
+/* PRICING PAGE STYLES */
+.pricing-hero {
+  padding: 180px 70px 100px;
+  background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+  text-align: center;
+}
+
+.pricing-hero h1 {
+  font-size: 64px;
+  margin-bottom: 24px;
+  color: #1f2937;
+  line-height: 1.1;
+}
+
+.pricing-hero h1 span {
+  color: #4f5dff;
+}
+
+.pricing-hero p {
+  font-size: 20px;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pricing-content {
+  padding: 100px 70px;
+  background: white;
+}
+
+.pricing-calc-section {
+  padding: 100px 70px;
+  background: #f8faff;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 100px 70px;
+  background: white;
+}
+
+.faq-grid {
+  max-width: 800px;
+  margin: 40px auto 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 24px 0;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-question h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.faq-question i {
+  transition: transform 0.3s ease;
+  color: #4f5dff;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  padding-top: 15px;
+}
+
+.faq-answer p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* Specific reveal overrides for Pricing Page */
+.pricing-hero .hero-content.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.faq-grid.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Responsive updates */
+@media (max-width: 900px) {
+  .pricing-hero h1 {
+    font-size: 42px;
+  }
+}
+
 
 
