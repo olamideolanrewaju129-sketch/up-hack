@@ -1522,6 +1522,8 @@ nav .active {
 
   
 
+}
+
 /* ABOUT PAGE STYLES */
 .page-hero {
   padding: 180px 70px 100px;
@@ -1705,6 +1707,9 @@ nav .active {
   font-weight: 600;
 }
 
+
+
+
 /* About Responsive */
 @media (max-width: 900px) {
   .mission-grid {
@@ -1721,4 +1726,4 @@ nav .active {
 }
 
 
-}
+
