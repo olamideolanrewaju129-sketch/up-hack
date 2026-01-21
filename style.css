@@ -1183,6 +1183,16 @@ nav .active {
   text-align: center;
   color: white;
   margin-top: 0;
+  
+  /* Animation Initial State */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.cta.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .cta-content {
