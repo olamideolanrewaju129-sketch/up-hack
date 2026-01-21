@@ -10,7 +10,7 @@ body {
   color: #0f172a;
 }
 
-/* NAVBAR */
+
 /* NAVBAR */
 .navbar {
   padding: 15px 70px; /* Reduced vertical padding slightly */
@@ -1498,6 +1498,203 @@ nav .active {
   
   .navbar {
     padding: 15px 20px;
+  }
+
+/* ABOUT PAGE STYLES */
+.page-hero {
+  padding: 180px 70px 100px;
+  background: linear-gradient(135deg, #f8faff 0%, #e0e7ff 100%);
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: 64px;
+  margin-bottom: 24px;
+  color: #1f2937;
+  line-height: 1.1;
+}
+
+.page-hero h1 span {
+  color: #4f5dff;
+}
+
+.page-hero p {
+  font-size: 20px;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mission-section {
+  padding: 100px 70px;
+  background: white;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.mission-text h2 {
+  font-size: 42px;
+  margin-bottom: 24px;
+}
+
+.mission-text h2 span {
+  color: #4f5dff;
+}
+
+.mission-text p {
+  color: #6b7280;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.mission-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.mission-stats .stat h4 {
+  font-size: 32px;
+  color: #1f2937;
+  font-weight: 800;
+}
+
+.mission-stats .stat span {
+  color: #6b7280;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mission-image .image-box {
+  background: #f1f5ff;
+  height: 400px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-image .floating-icon {
+  width: 100px;
+  height: 100px;
+  color: #4f5dff;
+  opacity: 0.2;
+}
+
+/* Values */
+.values-section {
+  padding: 100px 70px;
+  background: #f8faff;
+}
+
+.section-header.center {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.value-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+}
+
+.value-card .icon-circle {
+  width: 60px;
+  height: 60px;
+  background: #e0e7ff;
+  color: #4f5dff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.value-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.value-card p {
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Team */
+.team-section {
+  padding: 100px 70px;
+  background: white;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  text-align: center;
+}
+
+.team-card .avatar-circle {
+  width: 120px;
+  height: 120px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  /* Placeholder image logic, can be replaced */
+  background-image: url('images/image-1.webp'); /* Reuse for demo */
+  background-size: cover;
+}
+
+.team-card h4 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.team-card span {
+  color: #4f5dff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* About Responsive */
+@media (max-width: 900px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-content h1 {
+    font-size: 42px;
+  }
+  
+  .values-grid {
+    grid-template-columns: 1fr;
   }
 }
 
