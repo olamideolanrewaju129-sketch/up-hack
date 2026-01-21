@@ -1755,9 +1755,23 @@ nav .active {
 .team-card:nth-child(3) { transition-delay: 0.3s; }
 
 /* Active States for Reveal */
-.reveal.active {
-  opacity: 1;
+.reveal.active,
+.services-hero .hero-content.reveal.active,
+.process-step.reveal.active,
+.fleet-card.reveal.active {
+  opacity: 1 !important;
   transform: translate(0) !important;
+}
+
+@keyframes slideInText {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Team Card Hover */
