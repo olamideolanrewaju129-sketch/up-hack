@@ -1345,10 +1345,26 @@ nav .active {
   font-size: 15px;
   transition: color 0.3s ease;
   position: relative;
+  display: inline-block;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #4f5dff;
+  transition: width 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: #4f5dff;
+  color: white; /* Brighter text on hover */
+}
+
+.footer-links a:hover::after {
+  width: 100%; /* Slide underline */
 }
 
 .footer-links .badge {
