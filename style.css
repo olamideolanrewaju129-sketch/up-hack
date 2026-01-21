@@ -789,6 +789,73 @@ nav .active {
 .pricing-card:nth-child(2) { transition-delay: 0.2s; }
 .pricing-card:nth-child(3) { transition-delay: 0.3s; }
 
+/* Pricing Calculation Subsection */
+.pricing-calc {
+  margin-top: 80px;
+  background: #f9fafb;
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.pricing-calc.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pricing-calc h3 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #1f2937;
+}
+
+.calc-factors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+
+.factor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.factor .icon-circle {
+  width: 60px;
+  height: 60px;
+  background: #e0e7ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f5dff;
+  margin-bottom: 20px;
+}
+
+.factor .icon-circle i {
+  width: 28px;
+  height: 28px;
+}
+
+.factor h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.factor p {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 /* TESTIMONIALS SECTION */
 .testimonials {
   padding: 120px 0; /* Full width scroll requires 0 side padding on container, handled by track */
