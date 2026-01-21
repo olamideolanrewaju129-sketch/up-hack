@@ -1,16 +1,17 @@
-let value = 0;
-const target = 12847;
 const counter = document.getElementById("counter");
+if (counter) {
+  let value = 0;
+  const target = 12847;
+  const animate = setInterval(() => {
+    value += 97;
+    counter.textContent = value.toLocaleString();
 
-const animate = setInterval(() => {
-  value += 97;
-  counter.textContent = value.toLocaleString();
-
-  if (value >= target) {
-    counter.textContent = target.toLocaleString();
-    clearInterval(animate);
-  }
-}, 20);
+    if (value >= target) {
+      counter.textContent = target.toLocaleString();
+      clearInterval(animate);
+    }
+  }, 20);
+}
 
 
 const reveals = document.querySelectorAll(".reveal, .service-card");
