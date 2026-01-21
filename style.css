@@ -1725,6 +1725,41 @@ nav .active {
   }
 }
 
+/* REVEAL ANIMATIONS (ABOUT PAGE) */
+.hero-content.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.mission-text.reveal {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.mission-image.reveal {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.value-card.reveal,
+.team-card.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Staggered Delays for About Cards */
+.value-card:nth-child(2) { transition-delay: 0.15s; }
+.value-card:nth-child(3) { transition-delay: 0.3s; }
+
+.team-card:nth-child(2) { transition-delay: 0.15s; }
+.team-card:nth-child(3) { transition-delay: 0.3s; }
+
+/* Active States for Reveal */
+.reveal.active {
+  opacity: 1;
+  transform: translate(0) !important;
+}
+
 /* Team Card Hover */
 .team-card .avatar-circle {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
