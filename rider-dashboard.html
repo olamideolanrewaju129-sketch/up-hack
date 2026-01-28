@@ -218,6 +218,26 @@
     <script src="rider-dashboard.js"></script>
     <script>
         lucide.createIcons();
+
+        // Load User Name
+        const riderName = localStorage.getItem('riderName');
+        if (riderName) {
+            // Update Header Name
+            const dashboardHeader = document.querySelector('.header-left h1');
+            // Assuming the structure is: <h1>Welcome back, <span>John</span></h1>
+            // We want to keep the "Welcome back, " part and just change the span
+            const nameSpan = dashboardHeader.querySelector('span');
+            if (nameSpan) {
+                nameSpan.innerText = riderName.split(' ')[0]; // First name only
+            }
+
+            // Update Avatar Initials
+            const avatar = document.querySelector('.user-profile .avatar');
+            if (avatar) {
+                const initials = riderName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                avatar.innerText = initials;
+            }
+        }
     </script>
 </body>
 

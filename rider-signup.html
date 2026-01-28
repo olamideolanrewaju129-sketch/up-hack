@@ -150,6 +150,11 @@
         // Form Submission Simulation
         document.getElementById('signupForm').addEventListener('submit', (e) => {
             e.preventDefault();
+
+            // Save user name
+            const fullname = document.getElementById('fullname').value;
+            localStorage.setItem('riderName', fullname);
+
             const btn = e.target.querySelector('button');
             const originalText = btn.innerText;
 

@@ -118,6 +118,13 @@
         // Form Submission Simulation
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
+
+            // Simulate retrieving user data
+            // In real app, this comes from backend. Here we default if not set.
+            if (!localStorage.getItem('riderName')) {
+                localStorage.setItem('riderName', 'John Doe');
+            }
+
             const btn = e.target.querySelector('button');
             const originalText = btn.innerText;
 
