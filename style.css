@@ -800,6 +800,161 @@ nav .active {
 .pricing-card:nth-child(2) { transition-delay: 0.2s; }
 .pricing-card:nth-child(3) { transition-delay: 0.3s; }
 
+
+/* AUTHENTICATION PAGES */
+.auth-hero {
+  padding: 140px 20px 80px;
+  background: #f8faff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.auth-card {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-header .icon-circle {
+  width: 64px;
+  height: 64px;
+  background: #eff6ff;
+  color: #4f5dff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.auth-header .icon-circle i {
+  width: 32px;
+  height: 32px;
+}
+
+.auth-header h2 {
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.auth-header h2 span {
+  color: #4f5dff;
+}
+
+.auth-header p {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* Auth Form Styles */
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+
+.auth-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 14px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+  width: 100%;
+  padding: 14px 16px 14px 48px; /* Left padding for icon */
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+  outline: none;
+  border-color: #4f5dff;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(79, 93, 255, 0.1);
+}
+
+.input-wrapper input:focus + i,
+.input-wrapper input:focus ~ i { /* If icon is after input, or before (handled by generic sibling for safety, though structure puts icon first) */
+  color: #4f5dff;
+}
+/* Since icon is before input in HTML: */
+.input-wrapper:focus-within i {
+  color: #4f5dff;
+}
+
+.full-width {
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: #4f5dff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Animation Override for Auth */
+.auth-container.reveal {
+  animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Pricing Calculation Subsection */
 .pricing-calc {
   margin-top: 80px;

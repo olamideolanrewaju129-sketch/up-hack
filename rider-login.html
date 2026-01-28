@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rider Login – UpSide</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo-up.png" alt="UpSide-Logo">
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="rider-signup.html" class="outline-btn">Sign Up</a>
+            <a href="get-started.html" class="primary-btn">Get Started</a>
+        </div>
+    </header>
+
+    <!-- AUTH HERO -->
+    <section class="auth-hero">
+        <div class="auth-container reveal">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="icon-circle">
+                        <i data-lucide="key-round"></i>
+                    </div>
+                    <h2>Welcome <br><span>Back</span></h2>
+                    <p>Log in to manage your deliveries and earnings.</p>
+                </div>
+
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="mail"></i>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <label for="password" style="margin-bottom: 0;">Password</label>
+                            <a href="#" style="font-size: 13px; color: #4f5dff; text-decoration: none;">Forgot
+                                Password?</a>
+                        </div>
+                        <div class="input-wrapper">
+                            <i data-lucide="lock"></i>
+                            <input type="password" id="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn full-width">Log In</button>
+
+                    <p class="auth-footer">
+                        Don't have an account? <a href="rider-signup.html">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-area">
+                    <h3>Up-<span class="highlight">Hack</span></h3>
+                    <p>Redefining logistics for the digital age.</p>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email address" required>
+                    <button type="submit"><i data-lucide="arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Up-Hack Logistics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Form Submission Simulation
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'Logging In...';
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                alert('Login successful! Redirecting to dashboard...');
+                btn.innerText = originalText;
+                btn.style.opacity = '1';
+                // In a real app, redirect here
+                // window.location.href = 'rider-dashboard.html'; 
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
