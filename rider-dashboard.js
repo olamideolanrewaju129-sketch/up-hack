@@ -68,6 +68,58 @@ function acceptOrder() {
 // Initialize
 waitingState.style.display = 'flex'; // Default visible
 
+// Theme Management
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+} else {
+    document.documentElement.removeAttribute('data-theme');
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Bind Theme Toggle to Settings Link (Temporary for testing)
+const settingsLink = document.querySelector('a[href="#"] i[data-lucide="settings"]')?.parentElement;
+if (settingsLink) {
+    settingsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleTheme();
+    });
+}
+
+
+// See More / See Less Functionality used for recent activities
+const seeMoreBtn = document.getElementById('seeMoreBtn');
+const hiddenItems = document.querySelectorAll('.activity-item.hidden');
+
+if (seeMoreBtn) {
+    seeMoreBtn.addEventListener('click', () => {
+        const isExpanded = seeMoreBtn.getAttribute('data-expanded') === 'true';
+
+        hiddenItems.forEach(item => {
+            item.style.display = isExpanded ? 'none' : 'flex';
+        });
+
+        if (isExpanded) {
+            seeMoreBtn.innerText = 'See More';
+            seeMoreBtn.setAttribute('data-expanded', 'false');
+        } else {
+            seeMoreBtn.innerText = 'See Less';
+            seeMoreBtn.setAttribute('data-expanded', 'true');
+        }
+    });
+}
+
+
 // Mobile Menu
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const sidebar = document.querySelector('.sidebar');

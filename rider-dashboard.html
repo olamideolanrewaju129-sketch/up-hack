@@ -9,7 +9,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="rider-dashboard.css" />
 </head>
 
 <body class="dashboard-body">
@@ -84,17 +84,22 @@
                 </div>
             </header>
 
+            <!-- DASHBOARD HERO -->
+            <div class="dashboard-hero">
+                <div class="hero-left">
+                    <p class="hero-label">Total Balance</p>
+                    <h2 class="hero-amount">₦15,400.00</h2>
+                </div>
+                <button class="top-up-btn">
+                    <div class="icon-box">
+                        <i data-lucide="plus"></i>
+                    </div>
+                    <span>Top Up</span>
+                </button>
+            </div>
+
             <!-- STATS ROW -->
             <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-icon pink">
-                        <i data-lucide="wallet"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>₦15,400</h3>
-                        <p>Today's earnings</p>
-                    </div>
-                </div>
 
                 <div class="stat-card">
                     <div class="stat-icon blue">
@@ -194,6 +199,7 @@
             <div class="recent-activity">
                 <h3>Recent Deliveries</h3>
                 <div class="activity-list">
+                    <!-- Item 1 -->
                     <div class="activity-item">
                         <div class="activity-icon">
                             <i data-lucide="check-circle-2"></i>
@@ -205,6 +211,7 @@
                         <div class="activity-amount">+ ₦1,800</div>
                     </div>
 
+                    <!-- Item 2 -->
                     <div class="activity-item">
                         <div class="activity-icon">
                             <i data-lucide="check-circle-2"></i>
@@ -215,6 +222,89 @@
                         </div>
                         <div class="activity-amount">+ ₦1,200</div>
                     </div>
+
+                    <!-- Item 3 -->
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Package Delivery</h4>
+                            <p>To Ikeja • 5 hours ago</p>
+                        </div>
+                        <div class="activity-amount">+ ₦2,500</div>
+                    </div>
+
+                    <!-- Hidden Items (4-9) -->
+                    <div class="activity-item hidden">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Grocery Delivery</h4>
+                            <p>To Lekki • Yesterday</p>
+                        </div>
+                        <div class="activity-amount">+ ₦3,000</div>
+                    </div>
+
+                    <div class="activity-item hidden">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Document Delivery</h4>
+                            <p>To Yaba • Yesterday</p>
+                        </div>
+                        <div class="activity-amount">+ ₦1,500</div>
+                    </div>
+
+                    <div class="activity-item hidden">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Parcel Delivery</h4>
+                            <p>To Surulere • 2 days ago</p>
+                        </div>
+                        <div class="activity-amount">+ ₦2,100</div>
+                    </div>
+
+                    <div class="activity-item hidden">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Food Delivery</h4>
+                            <p>To Victoria Island • 2 days ago</p>
+                        </div>
+                        <div class="activity-amount">+ ₦1,800</div>
+                    </div>
+
+                    <div class="activity-item hidden">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Electronics Delivery</h4>
+                            <p>To Ikeja • 3 days ago</p>
+                        </div>
+                        <div class="activity-amount">+ ₦5,000</div>
+                    </div>
+
+                    <div class="activity-item hidden">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Medicine Delivery</h4>
+                            <p>To Magodo • 3 days ago</p>
+                        </div>
+                        <div class="activity-amount">+ ₦1,200</div>
+                    </div>
+                </div>
+
+                <div class="view-more-container">
+                    <button id="seeMoreBtn" class="see-more-btn">See More</button>
                 </div>
             </div>
 
