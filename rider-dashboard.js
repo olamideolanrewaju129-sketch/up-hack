@@ -67,3 +67,22 @@ function acceptOrder() {
 
 // Initialize
 waitingState.style.display = 'flex'; // Default visible
+
+// Mobile Menu
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const sidebar = document.querySelector('.sidebar');
+const dashboardContainer = document.querySelector('.dashboard-container');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+        dashboardContainer.classList.toggle('sidebar-open');
+    });
+}
+
+// Close sidebar when clicking overlay
+if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', () => {
+        dashboardContainer.classList.remove('sidebar-open');
+    });
+}

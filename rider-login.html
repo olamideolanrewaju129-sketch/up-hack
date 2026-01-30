@@ -122,7 +122,12 @@
             // Simulate retrieving user data
             // In real app, this comes from backend. Here we default if not set.
             if (!localStorage.getItem('riderName')) {
-                localStorage.setItem('riderName', 'John Doe');
+                let name = prompt("Please enter your full name:", "Rider User");
+                if (name && name.trim() !== "") {
+                    localStorage.setItem('riderName', name);
+                } else {
+                    localStorage.setItem('riderName', "Rider");
+                }
             }
 
             const btn = e.target.querySelector('button');
