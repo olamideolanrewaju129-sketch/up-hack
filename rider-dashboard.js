@@ -131,8 +131,8 @@ function simulateOrder() {
                 </div>
 
                 <div class="order-actions">
-                    <button class="decline-btn" onclick="removeOrder('order-${i}')">Decline</button>
-                    <button class="accept-btn primary-btn" onclick="acceptOrder(this)">Accept Order</button>
+                    <a href="#" class="decline-btn" onclick="event.preventDefault(); removeOrder('order-${i}')">Decline</a>
+                    <a href="#" class="accept-btn primary-btn" onclick="event.preventDefault(); acceptOrder(this)">Accept Order</a>
                 </div>
             </div>
         `;
@@ -174,9 +174,13 @@ function acceptOrder(btn) {
     // Disable all buttons in this specific card or globally?
     // Let's just disable buttons in this card and alert
     const card = btn.closest('.active-order');
+    // Disable all buttons/links in this specific card
     if (card) {
-        const allBtns = card.querySelectorAll('button');
-        allBtns.forEach(b => b.disabled = true);
+        const allBtns = card.querySelectorAll('.order-actions a, .order-actions button');
+        allBtns.forEach(b => {
+            b.style.pointerEvents = 'none'; // Disable clicks
+            b.style.opacity = '0.7';
+        });
     }
 
     setTimeout(() => {
