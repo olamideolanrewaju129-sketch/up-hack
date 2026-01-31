@@ -318,8 +318,16 @@ function openBreakdown(type) {
 
 // --- NOTIFICATIONS LOGIC ---
 let notifications = [
-    { id: 1, type: 'order', title: 'New Delivery', message: 'Request from Ikeja Mall', time: 'Just now', unread: true, icon: 'package' },
-    { id: 2, type: 'earning', title: 'Payout', message: '₦15,000 processed', time: '2 hours ago', unread: true, icon: 'wallet' }
+    { id: 1, type: 'order', title: 'New Delivery Available', message: 'A new delivery request from Ikeja Mall is available in your area.', time: 'Just now', unread: true, icon: 'package' },
+    { id: 2, type: 'earning', title: 'Payout Successful', message: 'Your withdrawal of ₦15,000 has been processed successfully.', time: '2 hours ago', unread: true, icon: 'wallet' },
+    { id: 3, type: 'system', title: 'App Update Available', message: 'Version 2.4.0 is out! Update now to enjoy new features.', time: '5 hours ago', unread: false, icon: 'smartphone' },
+    { id: 4, type: 'order', title: 'Order Completed', message: 'Order #UP-4429 has been delivered successfully. You earned ₦2,200.', time: 'Yesterday', unread: false, icon: 'check-circle' },
+    { id: 5, type: 'system', title: 'Safety Reminder', message: 'Always remember to wear your helmet and follow traffic rules.', time: 'Yesterday', unread: false, icon: 'shield-alert' },
+    { id: 6, type: 'earning', title: 'Bonus Received!', message: 'You have been awarded a ₦1,500 weekly performance bonus.', time: '2 days ago', unread: false, icon: 'gift' },
+    { id: 7, type: 'order', title: 'Pick-up Reminder', message: 'You have a scheduled pick-up at Lekki Phase 1 in 30 minutes.', time: '3 days ago', unread: false, icon: 'clock' },
+    { id: 8, type: 'system', title: 'Account Verified', message: 'Your documents have been verified. You can now accept all order types.', time: '4 days ago', unread: false, icon: 'user-check' },
+    { id: 9, type: 'earning', title: 'Fuel Subsidy Credit', message: 'A credit of ₦1,200 has been added to your wallet for fuel support.', time: '5 days ago', unread: false, icon: 'droplet' },
+    { id: 10, type: 'order', title: 'Customer Tip!', message: 'You received a ₦500 tip for your excellent service on order #UP-4412.', time: '1 week ago', unread: false, icon: 'star' }
 ];
 
 function initNotifications() {
