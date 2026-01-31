@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="/css files/style.css" />
+    <script src="theme-engine.js"></script>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
     <!-- NAVBAR -->
     <header class="navbar">
         <div class="logo">
-            <img src="logo-up.png" alt="UpSide-Logo">
+            <img src="/images/logo-up.png" alt="UpSide-Logo">
         </div>
 
         <nav>
@@ -121,6 +122,9 @@
 
             // Simulate retrieving user data
             // In real app, this comes from backend. Here we default if not set.
+            const loginEmail = document.getElementById('email').value;
+            localStorage.setItem('riderEmail', loginEmail);
+
             if (!localStorage.getItem('riderName')) {
                 let name = prompt("Please enter your full name:", "Rider User");
                 if (name && name.trim() !== "") {

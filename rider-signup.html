@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="/css files/style.css" />
+    <script src="theme-engine.js"></script>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
     <!-- NAVBAR -->
     <header class="navbar">
         <div class="logo">
-            <img src="logo-up.png" alt="UpSide-Logo">
+            <img src="/images/logo-up.png" alt="UpSide-Logo">
         </div>
 
         <nav>
@@ -151,9 +152,11 @@
         document.getElementById('signupForm').addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Save user name
+            // Save user name and email
             const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
             localStorage.setItem('riderName', fullname);
+            localStorage.setItem('riderEmail', email);
 
             const btn = e.target.querySelector('button');
             const originalText = btn.innerText;

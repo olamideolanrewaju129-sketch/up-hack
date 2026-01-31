@@ -194,24 +194,7 @@ function acceptOrder(btn) {
 // Initialize
 waitingState.style.display = 'flex'; // Default visible
 
-// Theme Management
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-} else {
-    document.documentElement.removeAttribute('data-theme');
-}
-
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    if (currentTheme === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    }
-}
+// Theme Management is now handled by theme-engine.js
 
 // Bind Theme Toggle to Settings Link (Temporary for testing)
 const settingsLink = document.querySelector('a[href="#"] i[data-lucide="settings"]')?.parentElement;

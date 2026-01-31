@@ -1,0 +1,173 @@
+/* 
+   USER STYLES 
+   Dedicated styles for the customer (shipper) experience
+*/
+
+:root {
+    --user-primary: #fe4a49;
+    /* Distinct red for users */
+    --user-primary-soft: rgba(254, 74, 73, 0.1);
+    --user-secondary: #2ab7ca;
+    --user-accent: #fed766;
+    --user-bg: #ffffff;
+    --user-text: #1f2937;
+    --user-border: #e5e7eb;
+    --user-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+    --user-bg: #0f172a;
+    --user-text: #f8fafc;
+    --user-border: #1e293b;
+    --user-primary-soft: rgba(254, 74, 73, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--user-bg);
+    color: var(--user-text);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* AUTH PAGES */
+.auth-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: radial-gradient(circle at top right, var(--user-primary-soft), transparent 400px),
+        radial-gradient(circle at bottom left, rgba(42, 183, 202, 0.1), transparent 400px);
+}
+
+.auth-card {
+    background: var(--user-bg);
+    padding: 40px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: var(--user-shadow);
+    border: 1px solid var(--user-border);
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-header .icon-circle {
+    width: 64px;
+    height: 64px;
+    background: var(--user-primary-soft);
+    color: var(--user-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.auth-header h2 {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.auth-header h2 span {
+    color: var(--user-primary);
+}
+
+.auth-header p {
+    color: #64748b;
+    margin-top: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border: 2px solid var(--user-border);
+    border-radius: 14px;
+    background: transparent;
+    color: var(--user-text);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    border-color: var(--user-primary);
+    box-shadow: 0 0 0 4px var(--user-primary-soft);
+}
+
+.primary-btn.full-width {
+    width: 100%;
+    justify-content: center;
+    padding: 16px;
+    background: var(--user-primary);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    margin-top: 10px;
+}
+
+.primary-btn.full-width:hover {
+    background: #e54342;
+    transform: translateY(-2px);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    color: #64748b;
+}
+
+.auth-footer a {
+    color: var(--user-primary);
+    font-weight: 600;
+    text-decoration: none;
+}

@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProfileData();
     initSettingsActions();
     syncThemeToggle();
+
+    window.addEventListener('themeChanged', syncThemeToggle);
 });
 
 function initTabs() {
@@ -28,8 +30,13 @@ function initTabs() {
 
 function loadProfileData() {
     const currentName = localStorage.getItem('riderName') || 'Rider User';
+    const currentEmail = localStorage.getItem('riderEmail') || 'rider@upside.com';
+
     const nameInput = document.getElementById('settingName');
+    const emailInput = document.getElementById('settingEmail');
+
     if (nameInput) nameInput.value = currentName;
+    if (emailInput) emailInput.value = currentEmail;
 
     // Load Preferences
     const navApp = localStorage.getItem('navApp') || 'google';
@@ -48,19 +55,25 @@ function initSettingsActions() {
         profileForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const newName = document.getElementById('settingName').value;
+            const newEmail = document.getElementById('settingEmail').value;
+
             if (newName.trim() !== "") {
                 localStorage.setItem('riderName', newName);
-                // Call global profile sync from rider-dashboard.js
-                if (typeof initUserProfile === 'function') initUserProfile();
-                alert('Profile updated successfully!');
             }
+            if (newEmail.trim() !== "") {
+                localStorage.setItem('riderEmail', newEmail);
+            }
+
+            // Call global profile sync from rider-dashboard.js
+            if (typeof initUserProfile === 'function') initUserProfile();
+            alert('Profile updated successfully!');
         });
     }
 
     const themeToggle = document.getElementById('themeSettingToggle');
     if (themeToggle) {
         themeToggle.addEventListener('change', () => {
-            // toggleTheme() is global in rider-dashboard.js
+            // toggleTheme() is global in theme-engine.js
             if (typeof toggleTheme === 'function') toggleTheme();
         });
     }
