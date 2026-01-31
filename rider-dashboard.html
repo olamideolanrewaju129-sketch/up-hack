@@ -148,49 +148,13 @@
 
                 <!-- ACTIVE ORDER STATE (Hidden by default) -->
                 <div id="activeOrderState" class="state-card active-order" style="display: none;">
-                    <div class="order-header">
-                        <span class="order-badge">New Request</span>
-                        <span class="timer">00:45</span>
+                    <div class="orders-header">
+                        <h2>New Requests <span class="badge" id="orderCountBadge">0</span></h2>
+                        <button class="decline-all-btn" onclick="declineOrder()">Decline All</button>
                     </div>
 
-                    <div class="order-details">
-                        <div class="route-line">
-                            <div class="point pickup">
-                                <div class="dot"></div>
-                                <div class="text">
-                                    <h4>Pickup</h4>
-                                    <p>15 Awolowo Way, Ikeja</p>
-                                </div>
-                            </div>
-                            <div class="connector"></div>
-                            <div class="point dropoff">
-                                <div class="dot"></div>
-                                <div class="text">
-                                    <h4>Dropoff</h4>
-                                    <p>22 Admiralty Way, Lekki Phase 1</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-info-grid">
-                        <div class="info-item">
-                            <span>Est. Earning</span>
-                            <strong>₦2,500</strong>
-                        </div>
-                        <div class="info-item">
-                            <span>Distance</span>
-                            <strong>12.4 km</strong>
-                        </div>
-                        <div class="info-item">
-                            <span>Item Type</span>
-                            <strong>Electronics</strong>
-                        </div>
-                    </div>
-
-                    <div class="order-actions">
-                        <button class="decline-btn" onclick="declineOrder()">Decline</button>
-                        <button class="accept-btn primary-btn" onclick="acceptOrder()">Accept Order</button>
+                    <div class="orders-list" id="ordersList">
+                        <!-- Orders will be injected here via JS -->
                     </div>
                 </div>
             </div>

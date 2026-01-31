@@ -31,6 +31,30 @@ function updateOnlineStatus() {
     }
 }
 
+// Locations Data (Lagos)
+const locations = [
+    "Ikeja City Mall", "Lekki Phase 1", "Victoria Island", "Surulere", "Yaba",
+    "Maryland Mall", "Gbagada", "Magodo Phase 2", "VGC", "Ajah",
+    "Festac Town", "Apapa", "Marina", "Ikoyi", "Banana Island"
+];
+
+const itemTypes = ["Electronics", "Food", "Document", "Package", "Groceries", "Medicine"];
+
+// Helper to get random item from array
+function getRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Helper to generate random price
+function getRandomPrice() {
+    return Math.floor(Math.random() * (5000 - 800) + 800);
+}
+
+// Helper to generate random distance
+function getRandomDistance() {
+    return (Math.random() * (25 - 2) + 2).toFixed(1);
+}
+
 // Mock Order Simulation
 function simulateOrder() {
     if (!isOnline) {
@@ -40,10 +64,75 @@ function simulateOrder() {
         return;
     }
 
+    const ordersList = document.getElementById('ordersList');
+    const orderCountBadge = document.getElementById('orderCountBadge');
+
+    // Clear previous orders
+    ordersList.innerHTML = '';
+
+    // Generate 3-5 orders
+    const orderCount = Math.floor(Math.random() * 3) + 3; // 3, 4, or 5
+
+    orderCountBadge.innerText = orderCount;
+
+    for (let i = 0; i < orderCount; i++) {
+        const price = getRandomPrice();
+        const distance = getRandomDistance();
+        const pickup = getRandom(locations);
+        let dropoff = getRandom(locations);
+
+        // Ensure pickup and dropoff are different
+        while (dropoff === pickup) {
+            dropoff = getRandom(locations);
+        }
+
+        const itemType = getRandom(itemTypes);
+
+        const orderHTML = `
+            <div class="order-card-compact" id="order-${i}">
+                <div class="compact-header">
+                    <div class="compact-price">₦${price.toLocaleString()}</div>
+                    <div class="compact-distance">${distance} km</div>
+                </div>
+                <div class="compact-route">
+                    <div class="route-row">
+                        <div class="route-dot pickup"></div>
+                        <div class="route-text" title="${pickup}">${pickup}</div>
+                    </div>
+                    <div class="route-row">
+                        <div class="route-dot dropoff"></div>
+                        <div class="route-text" title="${dropoff}">${dropoff}</div>
+                    </div>
+                </div>
+                <div class="compact-actions">
+                    <button class="btn-small decline-btn" onclick="removeOrder('order-${i}')">Decline</button>
+                    <button class="btn-small accept-btn-small" onclick="acceptOrder(this)">Accept</button>
+                </div>
+            </div>
+        `;
+
+        ordersList.insertAdjacentHTML('beforeend', orderHTML);
+    }
+
     waitingState.style.display = 'none';
     activeOrderState.style.display = 'block';
+}
 
-    // Play a sound or animation if we had one
+function removeOrder(id) {
+    const orderCard = document.getElementById(id);
+    if (orderCard) {
+        orderCard.style.opacity = '0';
+        setTimeout(() => {
+            orderCard.remove();
+            // Update badge
+            const count = document.querySelectorAll('.order-card-compact').length;
+            document.getElementById('orderCountBadge').innerText = count;
+
+            if (count === 0) {
+                declineOrder(); // Go back to waiting if all declined
+            }
+        }, 200);
+    }
 }
 
 function declineOrder() {
@@ -51,17 +140,20 @@ function declineOrder() {
     waitingState.style.display = 'flex'; // Flex to center content
 }
 
-function acceptOrder() {
-    const btn = document.querySelector('.accept-btn');
+function acceptOrder(btn) {
+    // Visual feedback
     btn.innerText = 'Accepted!';
     btn.style.backgroundColor = '#22c55e';
+
+    // Disable all other buttons
+    const allBtns = document.querySelectorAll('.btn-small');
+    allBtns.forEach(b => b.disabled = true);
 
     setTimeout(() => {
         alert("Order accepted! Navigating to navigation view...");
         // Reset for demo
         declineOrder();
-        btn.innerText = 'Accept Order';
-        btn.style.backgroundColor = ''; // Reset to default class style
+        // In a real app we would navigate to the map view for this specific order
     }, 1000);
 }
 
