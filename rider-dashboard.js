@@ -246,6 +246,25 @@ if (seeMoreBtn) {
 }
 
 
+// User Profile Initialization
+function initUserProfile() {
+    const userName = localStorage.getItem('riderName') || 'Rider User';
+
+    // Update Welcome message (if exists)
+    const welcomeSpan = document.querySelector('.header-left h1 span');
+    if (welcomeSpan) {
+        welcomeSpan.innerText = userName.split(' ')[0]; // Show first name
+    }
+
+    // Update Avatar Initials
+    const avatars = document.querySelectorAll('.avatar');
+    const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+
+    avatars.forEach(avatar => {
+        avatar.innerText = initials || 'R';
+    });
+}
+
 // Mobile Menu
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const sidebar = document.querySelector('.sidebar');
@@ -264,3 +283,7 @@ if (sidebarOverlay) {
         dashboardContainer.classList.remove('sidebar-open');
     });
 }
+
+// Run profile init
+document.addEventListener('DOMContentLoaded', initUserProfile);
+initUserProfile(); // Run immediately too in case DOM is already loaded
