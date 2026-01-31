@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings – UpSide Rider</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="rider-dashboard.css" />
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+        <!-- OVERLAY -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="logo-up.png" alt="UpSide-Logo">
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="rider-dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="rider-deliveries.html" class="nav-item">
+                    <i data-lucide="package-check"></i>
+                    <span>Deliveries</span>
+                </a>
+                <a href="rider-earnings.html" class="nav-item">
+                    <i data-lucide="wallet"></i>
+                    <span>Earnings</span>
+                </a>
+                <a href="rider-notifications.html" class="nav-item">
+                    <i data-lucide="bell"></i>
+                    <span>Notifications</span>
+                    <span class="badge-dot"></span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="rider-login.html" class="nav-item logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TOP HEADER -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Settings</h1>
+                    <p>Manage your account and app preferences</p>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="avatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- SETTINGS CONTENT -->
+            <div class="settings-container">
+                <div class="settings-tabs">
+                    <button class="tab-btn active" data-tab="profile">
+                        <i data-lucide="user"></i>
+                        <span>Profile</span>
+                    </button>
+                    <button class="tab-btn" data-tab="appearance">
+                        <i data-lucide="palette"></i>
+                        <span>Appearance</span>
+                    </button>
+                    <button class="tab-btn" data-tab="preferences">
+                        <i data-lucide="settings-2"></i>
+                        <span>Preferences</span>
+                    </button>
+                    <button class="tab-btn" data-tab="notifications">
+                        <i data-lucide="bell"></i>
+                        <span>Notifications</span>
+                    </button>
+                    <button class="tab-btn" data-tab="security">
+                        <i data-lucide="lock"></i>
+                        <span>Security</span>
+                    </button>
+                </div>
+
+                <div class="settings-content-area">
+                    <!-- PROFILE TAB -->
+                    <div class="settings-pane active" id="profile">
+                        <div class="pane-header">
+                            <h3>Profile Information</h3>
+                            <p>Update your personal and vehicle details</p>
+                        </div>
+                        <form class="settings-form" id="profileForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="settingName" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" value="rider@upside.com" readonly
+                                        style="opacity: 0.7; cursor: not-allowed;">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" placeholder="+234 812 345 6789">
+                                </div>
+                                <div class="form-group">
+                                    <label>Vehicle Model</label>
+                                    <input type="text" placeholder="Bajaj Pulsar 200">
+                                </div>
+                            </div>
+                            <button type="submit" class="primary-btn">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- APPEARANCE TAB -->
+                    <div class="settings-pane" id="appearance">
+                        <div class="pane-header">
+                            <h3>Appearance</h3>
+                            <p>Customize how UpSide looks on your device</p>
+                        </div>
+                        <div class="appearance-settings">
+                            <div class="setting-item-toggle">
+                                <div class="setting-info">
+                                    <h4>Dark Mode</h4>
+                                    <p>Switch between light and dark themes</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="themeSettingToggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PREFERENCES TAB -->
+                    <div class="settings-pane" id="preferences">
+                        <div class="pane-header">
+                            <h3>App Preferences</h3>
+                            <p>Configure how the app behaves during deliveries</p>
+                        </div>
+                        <div class="preference-settings">
+                            <div class="form-group" style="margin-bottom: 24px;">
+                                <label>Default Navigation App</label>
+                                <select class="settings-select" id="navAppSelect">
+                                    <option value="google">Google Maps</option>
+                                    <option value="waze">Waze</option>
+                                    <option value="apple">Apple Maps</option>
+                                    <option value="internal">In-app Navigation</option>
+                                </select>
+                            </div>
+
+                            <div class="setting-item-toggle">
+                                <div class="setting-info">
+                                    <h4>Auto-Accept Orders</h4>
+                                    <p>Automatically accept new orders without manual confirmation</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="autoAcceptToggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NOTIFICATIONS TAB -->
+                    <div class="settings-pane" id="notifications">
+                        <div class="pane-header">
+                            <h3>Notification Preferences</h3>
+                            <p>Control which alerts you want to receive</p>
+                        </div>
+                        <div class="toggle-list">
+                            <div class="setting-item-toggle">
+                                <div class="setting-info">
+                                    <h4>Order Alerts</h4>
+                                    <p>Receive notifications for new delivery requests</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item-toggle">
+                                <div class="setting-info">
+                                    <h4>Earnings Updates</h4>
+                                    <p>Get notified when you receive a payout or bonus</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECURITY TAB -->
+                    <div class="settings-pane" id="security">
+                        <div class="pane-header">
+                            <h3>Security</h3>
+                            <p>Manage your password and account protection</p>
+                        </div>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <button type="button" class="primary-btn outline"
+                                style="border: 1px solid var(--border-color); color: var(--text-main); background: none;">Change
+                                Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="rider-dashboard.js"></script>
+    <script src="rider-settings.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

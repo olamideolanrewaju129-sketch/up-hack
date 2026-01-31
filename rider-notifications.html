@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications – UpSide Rider</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="rider-dashboard.css" />
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+        <!-- OVERLAY -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="logo-up.png" alt="UpSide-Logo">
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="rider-dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="rider-deliveries.html" class="nav-item">
+                    <i data-lucide="package-check"></i>
+                    <span>Deliveries</span>
+                </a>
+                <a href="rider-earnings.html" class="nav-item">
+                    <i data-lucide="wallet"></i>
+                    <span>Earnings</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i data-lucide="bell"></i>
+                    <span>Notifications</span>
+                    <span class="badge-dot"></span>
+                </a>
+                <a href="rider-settings.html" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="rider-login.html" class="nav-item logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TOP HEADER -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Notifications</h1>
+                    <p>Stay updated with your latest alerts</p>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="avatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- NOTIFICATIONS CONTENT -->
+            <div class="notifications-page-container">
+                <div class="notifications-header">
+                    <div class="filters">
+                        <button class="filter-chip active" data-filter="all">All</button>
+                        <button class="filter-chip" data-filter="unread">Unread</button>
+                        <button class="filter-chip" data-filter="system">System</button>
+                    </div>
+                    <button class="text-btn" id="markAllRead">Mark all as read</button>
+                </div>
+
+                <div class="notifications-list" id="notificationsList">
+                    <!-- Notifications will be injected here via JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="rider-dashboard.js"></script>
+    <script src="rider-notifications.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
