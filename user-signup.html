@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up – UpSide</title>
+    <title>Create Account – UpSide</title>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="/css files/user-styles.css" />
-
+    <link rel="stylesheet" href="css files/shipper-styles.css" />
 </head>
 
 <body>
@@ -18,11 +17,11 @@
     <section class="auth-hero">
         <div class="auth-card">
             <div class="auth-header">
-                <div class="icon-circle">
-                    <i data-lucide="package"></i>
+                <div class="logo-box">
+                    <img src="images/logo-up.png" alt="UpSide Logo">
                 </div>
-                <h2>Start <span>Shipping</span></h2>
-                <p>Join thousands of users moving goods with UpSide.</p>
+                <h2>Create <span>Account</span></h2>
+                <p>Join thousands of shippers using our modern logistics network.</p>
             </div>
 
             <form class="auth-form" id="userSignupForm">
@@ -38,7 +37,7 @@
                     <label for="email">Email Address</label>
                     <div class="input-wrapper">
                         <i data-lucide="mail"></i>
-                        <input type="email" id="email" placeholder="you@example.com" required>
+                        <input type="email" id="email" placeholder="name@example.com" required>
                     </div>
                 </div>
 
@@ -50,14 +49,17 @@
                     </div>
                 </div>
 
-                <button type="submit" class="primary-btn full-width">Create Account</button>
+                <button type="submit" class="primary-btn full-width">Get Started</button>
 
                 <p class="auth-footer">
-                    Already have an account? <a href="user-login.html">Log In</a>
+                    Already have an account? <a href="user-login.html">Sign In</a>
                 </p>
-                <p class="auth-footer" style="margin-top: 10px; font-size: 13px;">
-                    Join as a rider instead? <a href="rider-signup.html" style="color: #6b7280;">Sign up here</a>
-                </p>
+                <div
+                    style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--user-border); text-align: center;">
+                    <p style="font-size: 13px; color: var(--user-text-muted);">
+                        Want to earn with us? <a href="rider-signup.html" style="color: #64748b;">Become a Rider</a>
+                    </p>
+                </div>
             </form>
         </div>
     </section>

@@ -9,8 +9,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="/css files/user-styles.css" />
-
+    <link rel="stylesheet" href="css files/shipper-styles.css" />
 </head>
 
 <body>
@@ -18,11 +17,11 @@
     <section class="auth-hero">
         <div class="auth-card">
             <div class="auth-header">
-                <div class="icon-circle">
-                    <i data-lucide="shield-check"></i>
+                <div class="logo-box">
+                    <img src="images/logo-up.png" alt="UpSide Logo">
                 </div>
-                <h2>Shipper <span>Login</span></h2>
-                <p>Access your dashboard to schedule pickups.</p>
+                <h2>Welcome <span>Back</span></h2>
+                <p>Log in to your account and manage your shipments with ease.</p>
             </div>
 
             <form class="auth-form" id="userLoginForm">
@@ -30,16 +29,16 @@
                     <label for="email">Email Address</label>
                     <div class="input-wrapper">
                         <i data-lucide="mail"></i>
-                        <input type="email" id="email" placeholder="you@example.com" required>
+                        <input type="email" id="email" placeholder="name@example.com" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
                         <label for="password" style="margin-bottom: 0;">Password</label>
                         <a href="#"
-                            style="font-size: 13px; color: var(--user-primary); text-decoration: none;">Forgot?</a>
+                            style="font-size: 13px; color: var(--user-primary); text-decoration: none; font-weight: 600;">Forgot?</a>
                     </div>
                     <div class="input-wrapper">
                         <i data-lucide="lock"></i>
@@ -47,14 +46,17 @@
                     </div>
                 </div>
 
-                <button type="submit" class="primary-btn full-width">Log In</button>
+                <button type="submit" class="primary-btn full-width">Sign In</button>
 
                 <p class="auth-footer">
-                    New to UpSide? <a href="user-signup.html">Create an account</a>
+                    Don't have an account? <a href="user-signup.html">Join UpSide</a>
                 </p>
-                <p class="auth-footer" style="margin-top: 10px; font-size: 13px;">
-                    Are you a rider? <a href="rider-login.html" style="color: #6b7280;">Login here</a>
-                </p>
+                <div
+                    style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--user-border); text-align: center;">
+                    <p style="font-size: 13px; color: var(--user-text-muted);">
+                        Are you a partner? <a href="rider-login.html" style="color: #64748b;">Rider Login</a>
+                    </p>
+                </div>
             </form>
         </div>
     </section>
@@ -68,12 +70,13 @@
             localStorage.setItem('userEmail', email);
 
             const btn = e.target.querySelector('button');
-            btn.innerText = 'Redirecting...';
+            const originalText = btn.innerText;
+            btn.innerText = 'Authenticating...';
             btn.style.opacity = '0.7';
 
             setTimeout(() => {
-                alert('Welcome back! Logging you in...');
-                window.location.href = 'index.html'; // In real app, user dashboard
+                alert('Welcome back! Redirecting...');
+                window.location.href = 'user-dashboard.html';
             }, 1000);
         });
     </script>
