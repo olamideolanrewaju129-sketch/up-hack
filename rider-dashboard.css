@@ -948,11 +948,186 @@ input:checked+.slider:before {
     margin: 0 0 4px 0;
 }
 
-.activity-details p {
-    color: var(--text-muted);
-    font-size: 13px;
-    margin: 0;
+/* DELIVERIES PAGE STYLES */
+.deliveries-container {
+    display: flex;
+    height: calc(100vh - 80px);
+    /* Adjust based on header provided in HTML inline currently */
+    overflow: hidden;
 }
+
+.deliveries-list-panel {
+    width: 400px;
+    background: var(--bg-body);
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.map-panel {
+    flex-grow: 1;
+    background: #e2e8f0;
+    position: relative;
+    z-index: 1;
+    /* Ensure map stays behind overlays if any */
+}
+
+[data-theme="dark"] .map-panel {
+    background: #0f172a;
+    /* Darker map background before tiles load */
+}
+
+/* Map Color Inversion Filter for Dark Mode */
+[data-theme="dark"] .leaflet-layer,
+[data-theme="dark"] .leaflet-control-zoom-in,
+[data-theme="dark"] .leaflet-control-zoom-out,
+[data-theme="dark"] .leaflet-control-attribution {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.filter-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-chip:hover {
+    background: var(--hover-bg);
+    color: var(--text-main);
+}
+
+.filter-chip.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+/* Delivery Card */
+.delivery-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.delivery-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.delivery-card.selected {
+    border-color: #6366f1;
+    background: var(--hover-bg);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.del-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.del-date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.del-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.del-status.delivered {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.del-status.canceled {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.del-route {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 12px;
+}
+
+.route-node {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 24px;
+}
+
+.route-node .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.route-node .dot.pick {
+    background: #6366f1;
+}
+
+.route-node .dot.drop {
+    background: #22c55e;
+}
+
+.route-node .loc {
+    font-size: 14px;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.route-line-vert {
+    width: 1px;
+    height: 12px;
+    background: var(--border-color);
+    margin-left: 3.5px;
+    /* Half of dot width (4px) - half of line width (0.5px) */
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+
+.del-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+}
+
+.del-price {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-main);
+}
+
+.del-items {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
 
 .activity-amount {
     color: var(--text-main);
