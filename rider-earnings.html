@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnings – UpSide Rider</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="rider-dashboard.css" />
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+        <!-- OVERLAY -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="logo-up.png" alt="UpSide-Logo">
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="rider-dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="rider-deliveries.html" class="nav-item">
+                    <i data-lucide="package-check"></i>
+                    <span>Deliveries</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i data-lucide="wallet"></i>
+                    <span>Earnings</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="bell"></i>
+                    <span>Notifications</span>
+                    <span class="badge-dot"></span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="rider-login.html" class="nav-item logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TOP HEADER -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Earnings</h1>
+                    <p>Track your payouts and performance</p>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="avatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- EARNINGS OVERVIEW -->
+            <div class="earnings-hero dashboard-hero">
+                <div class="hero-left">
+                    <p class="hero-label">Available for Payout</p>
+                    <h2 class="hero-amount">₦42,850.00</h2>
+                </div>
+                <button class="top-up-btn">
+                    <div class="icon-box">
+                        <i data-lucide="arrow-up-right"></i>
+                    </div>
+                    <span>Withdraw</span>
+                </button>
+            </div>
+
+            <!-- STATS ROW -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>₦8,400</h3>
+                        <p>Today's Earnings</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i data-lucide="calendar"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>₦52,100</h3>
+                        <p>Weekly Total</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>₦5,000</h3>
+                        <p>Performance Bonus</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHART SECTION -->
+            <div class="chart-section stat-card" style="display: block; padding: 30px; margin-bottom: 40px;">
+                <div class="chart-header"
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <h3>Weekly Revenue Trend</h3>
+                    <select class="filter-chip" style="border: 1px solid var(--border-color); cursor: pointer;">
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                    </select>
+                </div>
+                <div style="height: 300px; width: 100%;">
+                    <canvas id="earningsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- TRANSACTION HISTORY -->
+            <div class="recent-activity">
+                <h3>Payout History</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">
+                            <i data-lucide="download-cloud"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Bank Withdrawal</h4>
+                            <p>To United Bank for Africa • Today, 9:00 AM</p>
+                        </div>
+                        <div class="activity-amount" style="color: #ef4444;">- ₦15,000</div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Earnings: Order #UP9281</h4>
+                            <p>Completed • Yesterday, 6:45 PM</p>
+                        </div>
+                        <div class="activity-amount">+ ₦2,500</div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Earnings: Order #UP9275</h4>
+                            <p>Completed • Yesterday, 4:20 PM</p>
+                        </div>
+                        <div class="activity-amount">+ ₦1,800</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="rider-dashboard.js"></script>
+    <script src="rider-earnings.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
