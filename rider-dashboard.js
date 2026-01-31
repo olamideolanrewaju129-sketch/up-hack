@@ -89,24 +89,50 @@ function simulateOrder() {
         const itemType = getRandom(itemTypes);
 
         const orderHTML = `
-            <div class="order-card-compact" id="order-${i}">
-                <div class="compact-header">
-                    <div class="compact-price">₦${price.toLocaleString()}</div>
-                    <div class="compact-distance">${distance} km</div>
+            <div class="state-card active-order simulated-order-card" id="order-${i}" style="display: block; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+                <div class="order-header">
+                    <span class="order-badge">New Request</span>
+                    <span class="timer">00:${Math.floor(Math.random() * 50 + 10)}</span>
                 </div>
-                <div class="compact-route">
-                    <div class="route-row">
-                        <div class="route-dot pickup"></div>
-                        <div class="route-text" title="${pickup}">${pickup}</div>
-                    </div>
-                    <div class="route-row">
-                        <div class="route-dot dropoff"></div>
-                        <div class="route-text" title="${dropoff}">${dropoff}</div>
+
+                <div class="order-details">
+                    <div class="route-line">
+                        <div class="point pickup">
+                            <div class="dot"></div>
+                            <div class="text">
+                                <h4>Pickup</h4>
+                                <p>${pickup}</p>
+                            </div>
+                        </div>
+                        <div class="connector"></div>
+                        <div class="point dropoff">
+                            <div class="dot"></div>
+                            <div class="text">
+                                <h4>Dropoff</h4>
+                                <p>${dropoff}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="compact-actions">
-                    <button class="btn-small decline-btn" onclick="removeOrder('order-${i}')">Decline</button>
-                    <button class="btn-small accept-btn-small" onclick="acceptOrder(this)">Accept</button>
+
+                <div class="order-info-grid">
+                    <div class="info-item">
+                        <span>Est. Earning</span>
+                        <strong>₦${price.toLocaleString()}</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Distance</span>
+                        <strong>${distance} km</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Item Type</span>
+                        <strong>${itemType}</strong>
+                    </div>
+                </div>
+
+                <div class="order-actions">
+                    <button class="decline-btn" onclick="removeOrder('order-${i}')">Decline</button>
+                    <button class="accept-btn primary-btn" onclick="acceptOrder(this)">Accept Order</button>
                 </div>
             </div>
         `;
@@ -125,7 +151,7 @@ function removeOrder(id) {
         setTimeout(() => {
             orderCard.remove();
             // Update badge
-            const count = document.querySelectorAll('.order-card-compact').length;
+            const count = document.querySelectorAll('.simulated-order-card').length;
             document.getElementById('orderCountBadge').innerText = count;
 
             if (count === 0) {
@@ -145,9 +171,13 @@ function acceptOrder(btn) {
     btn.innerText = 'Accepted!';
     btn.style.backgroundColor = '#22c55e';
 
-    // Disable all other buttons
-    const allBtns = document.querySelectorAll('.btn-small');
-    allBtns.forEach(b => b.disabled = true);
+    // Disable all buttons in this specific card or globally?
+    // Let's just disable buttons in this card and alert
+    const card = btn.closest('.active-order');
+    if (card) {
+        const allBtns = card.querySelectorAll('button');
+        allBtns.forEach(b => b.disabled = true);
+    }
 
     setTimeout(() => {
         alert("Order accepted! Navigating to navigation view...");
