@@ -72,7 +72,7 @@ function renderRecentShipments(filter = 'all') {
             <td style="font-weight: 700; color: var(--primary); cursor: pointer;" onclick="window.location.href='user-tracking.html?id=${s.id}'">${s.id}</td>
             <td>${s.dest}</td>
             <td><span class="status-badge ${s.status.toLowerCase().replace(' ', '-')}">${s.status}</span></td>
-            <td>${s.date}</td>
+            <td>${timeAgo(s.date)}</td>
             ${filter === 'active' || (filter === 'all' && s.status === 'In Transit') ? `
                 <td>
                     <button class="icon-btn cancel-btn" title="Cancel Shipment" onclick="cancelShipment('${s.id}')">
@@ -122,6 +122,36 @@ function initStatsInteractivity() {
             document.getElementById('shipments-section').scrollIntoView({ behavior: 'smooth' });
         });
     }
+}
+
+/**
+ * HELPER: Format date to relative time
+ */
+function timeAgo(dateInput) {
+    if (!dateInput) return '';
+
+    // If it's a descriptive string from our mock data, return as is
+    if (typeof dateInput === 'string' && (dateInput.includes('Today') || dateInput.includes('Yesterday') || dateInput.includes('ago') || dateInput.includes('Jan') || dateInput.includes('Feb'))) {
+        return dateInput;
+    }
+
+    const date = new Date(dateInput);
+    if (isNaN(date.getTime())) return dateInput;
+
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+
+    if (diffInSeconds < 60) return 'Just Now';
+
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
+
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return `${diffInHours}h ago`;
+
+    if (diffInHours < 48) return 'Yesterday';
+
+    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 }
 
 function initTabs() {
@@ -283,7 +313,7 @@ function initShippingForm() {
                 id: shipmentId,
                 dest: dropoff,
                 status: 'In Transit',
-                date: 'Just Now'
+                date: new Date().toISOString()
             };
 
             allShipments.unshift(newShipment);
@@ -355,7 +385,7 @@ window.renderShipmentsPage = function () {
                 <td>Lagos, NG</td>
                 <td>${s.dest}</td>
                 <td><span class="status-badge ${s.status.toLowerCase().replace(' ', '-')}">${s.status}</span></td>
-                <td>${s.date}</td>
+                <td>${timeAgo(s.date)}</td>
                 <td>
                     <div style="display: flex; gap: 8px;">
                         <button class="icon-btn" title="View Details" onclick="window.location.href='user-tracking.html?id=${s.id}'"><i data-lucide="eye"></i></button>
@@ -517,7 +547,7 @@ window.initHistoryPage = function () {
                     <td style="font-weight: 700; color: var(--primary); cursor: pointer;" onclick="window.location.href='user-tracking.html?id=${s.id}'">${s.id}</td>
                     <td>${s.dest}</td>
                     <td><span class="status-badge delivered">Delivered</span></td>
-                    <td>${s.date}</td>
+                    <td>${timeAgo(s.date)}</td>
                     <td>₦${(2000 + Math.floor(Math.random() * 3000)).toLocaleString()}</td>
                 </tr>
             `).join('');

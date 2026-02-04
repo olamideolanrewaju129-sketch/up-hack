@@ -12,6 +12,13 @@
     --text-muted: #64748b;
     --white: #ffffff;
     --border: #e2e8f0;
+    --white: #ffffff;
+}
+
+a.primary-btn,
+a.outline-btn {
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 * {
@@ -26,9 +33,17 @@ body {
     color: var(--text-dark);
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.auth-hero {
+    flex: 1;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 100px 20px 40px;
+    /* Space for fixed navbar */
 }
 
 .auth-card {
@@ -97,8 +112,11 @@ body {
     border-color: var(--brand-blue);
 }
 
-.primary-btn {
+.auth-form .primary-btn {
     width: 100%;
+}
+
+.primary-btn {
     padding: 14px;
     background: var(--brand-blue);
     color: white;
