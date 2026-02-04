@@ -28,7 +28,7 @@
                     <i data-lucide="layout-dashboard"></i>
                     <span>Overview</span>
                 </a>
-                <a href="user-dashboard.html?tab=send" class="nav-item">
+                <a href="user-send-package.html" class="nav-item">
                     <i data-lucide="package-plus"></i>
                     <span>Send Package</span>
                 </a>
@@ -44,7 +44,7 @@
                     <i data-lucide="history"></i>
                     <span>History</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="user-settings.html" class="nav-item">
                     <i data-lucide="settings"></i>
                     <span>Settings</span>
                 </a>
@@ -62,7 +62,7 @@
         <main class="main-content">
             <header class="header">
                 <div class="header-left">
-                    <h1>Activity History</h1>
+                    <h1>Hello, <span id="userNameDisplay">Shipper</span> 👋</h1>
                     <p style="color: var(--text-muted); font-size: 14px;">Review your past shipments and wallet
                         transactions.</p>
                 </div>
@@ -80,9 +80,12 @@
 
             <!-- History Stats -->
             <div class="stats-grid" style="margin-bottom: 30px;">
-                <div class="stat-card">
+                <div class="stat-card" style="cursor: pointer;" onclick="showSpendingBreakdown()">
                     <h3>Total Spent</h3>
                     <div class="value">₦45,200</div>
+                    <p style="font-size: 11px; color: var(--primary); margin-top: 4px; font-weight: 600;">View Breakdown
+                        <i data-lucide="external-link" style="width: 10px; height: 10px; vertical-align: middle;"></i>
+                    </p>
                 </div>
                 <div class="stat-card">
                     <h3>Total Shipments</h3>
@@ -151,8 +154,66 @@
         </main>
     </div>
 
+    <!-- EXPENSE BREAKDOWN MODAL -->
+    <div class="modal-overlay" id="spendingModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>Expense Breakdown</h2>
+                <button class="close-modal" onclick="closeSpendingModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div class="breakdown-list">
+                <div class="breakdown-item">
+                    <div class="item-icon"><i data-lucide="truck"></i></div>
+                    <div class="item-details">
+                        <h4>Base Shipping</h4>
+                        <p>Standard delivery costs for all parcels</p>
+                    </div>
+                    <div class="item-amount">₦32,500</div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="item-icon"><i data-lucide="shield-check"></i></div>
+                    <div class="item-details">
+                        <h4>Insurance & Protection</h4>
+                        <p>Cover for valuable or fragile items</p>
+                    </div>
+                    <div class="item-amount">₦5,800</div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="item-icon"><i data-lucide="zap"></i></div>
+                    <div class="item-details">
+                        <h4>Priority Surcharges</h4>
+                        <p>Extra for same-day or express delivery</p>
+                    </div>
+                    <div class="item-amount">₦4,200</div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="item-icon"><i data-lucide="info"></i></div>
+                    <div class="item-details">
+                        <h4>Admin & Service Fees</h4>
+                        <p>Platform & handling charges</p>
+                    </div>
+                    <div class="item-amount">₦2,700</div>
+                </div>
+            </div>
+
+            <div class="total-spent-banner">
+                <div class="banner-info">
+                    <span>Cumulative Spending</span>
+                    <h3>₦45,200</h3>
+                </div>
+                <i data-lucide="wallet" style="width: 32px; height: 32px; opacity: 0.5;"></i>
+            </div>
+        </div>
+    </div>
+
     <!-- USER DASHBOARD SCRIPT -->
-    <script src="/js files/user-dashboard.js"></script>
+    <script src="js files/user-dashboard.js"></script>
     <script>
         lucide.createIcons();
         if (typeof initHistoryPage === 'function') {

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Package – UpSide</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Leaflet JS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="css files/user-dashboard.css">
+    <style>
+        #shipmentMap {
+            height: 350px;
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="user-dashboard">
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="images/logo-up.png" alt="UpSide Logo">
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="user-dashboard.html" class="nav-item" data-tab="overview">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="user-send-package.html" class="nav-item active" data-tab="send">
+                    <i data-lucide="package-plus"></i>
+                    <span>Send Package</span>
+                </a>
+                <a href="user-shipments.html" class="nav-item">
+                    <i data-lucide="container"></i>
+                    <span>My Shipments</span>
+                </a>
+                <a href="user-tracking.html" class="nav-item" data-tab="track">
+                    <i data-lucide="map-pin"></i>
+                    <span>Tracking</span>
+                </a>
+                <a href="user-history.html" class="nav-item" data-tab="history">
+                    <i data-lucide="history"></i>
+                    <span>History</span>
+                </a>
+                <a href="user-settings.html" class="nav-item" data-tab="settings">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-item logout-btn">
+                    <i data-lucide="log-out"></i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h1>Hello, <span id="userNameDisplay">Shipper</span> 👋</h1>
+                    <p style="color: var(--text-muted); font-size: 14px;">Fill in the details to request a rider.</p>
+                </div>
+
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="avatar" id="userAvatar">U</div>
+                        <div class="details">
+                            <h4 style="font-size: 14px; font-weight: 700;" id="userNameFull">User Name</h4>
+                            <p style="font-size: 12px; color: var(--text-muted);" id="userEmail">user@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="send-package-container">
+                <!-- Progress Bar -->
+                <div class="form-progress">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-num">1</div>
+                        <span>Details</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-num">2</div>
+                        <span>Category</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-num">3</div>
+                        <span>Confirm</span>
+                    </div>
+                </div>
+
+                <form id="shippingForm" class="multi-step-form">
+                    <!-- Step 1: Shipment Details -->
+                    <div class="form-step active" id="step-1">
+                        <h2 class="step-title">Shipment Details</h2>
+                        <p class="step-desc">Enter the sender and recipient information.</p>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><i data-lucide="user"></i> Sender Name</label>
+                                <input type="text" id="senderName" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i data-lucide="phone"></i> Phone Number</label>
+                                <input type="tel" placeholder="+234" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label><i data-lucide="map-pin"></i> Pickup Location</label>
+                                <input type="text" id="pickupLocation" placeholder="Full Address in Lagos (Pickup)"
+                                    required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label><i data-lucide="map-pin"></i> Dropoff Location</label>
+                                <input type="text" id="dropoffLocation" placeholder="Full Address in Lagos (Dropoff)"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="primary-btn next-step">Continue to Category <i
+                                    data-lucide="arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Package Category -->
+                    <div class="form-step" id="step-2">
+                        <h2 class="step-title">Package Category</h2>
+                        <p class="step-desc">Select the type of item you are sending.</p>
+
+                        <div class="category-grid">
+                            <div class="category-card" data-category="document">
+                                <div class="category-icon"><i data-lucide="file-text"></i></div>
+                                <div class="category-info">
+                                    <h4>Document</h4>
+                                    <p>Letters, legal papers</p>
+                                </div>
+                                <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
+                            </div>
+                            <div class="category-card" data-category="small">
+                                <div class="category-icon"><i data-lucide="package"></i></div>
+                                <div class="category-info">
+                                    <h4>Small Parcel</h4>
+                                    <p>Up to 2kg (Shoebox size)</p>
+                                </div>
+                                <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
+                            </div>
+                            <div class="category-card" data-category="medium">
+                                <div class="category-icon"><i data-lucide="box"></i></div>
+                                <div class="category-info">
+                                    <h4>Medium Box</h4>
+                                    <p>2-10kg (Desktop size)</p>
+                                </div>
+                                <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
+                            </div>
+                            <div class="category-card" data-category="large">
+                                <div class="category-icon"><i data-lucide="truck"></i></div>
+                                <div class="category-info">
+                                    <h4>Large Item</h4>
+                                    <p>Over 10kg (Furniture, etc)</p>
+                                </div>
+                                <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="secondary-btn prev-step"><i data-lucide="arrow-left"></i>
+                                Back</button>
+                            <button type="button" class="primary-btn next-step">Finalize Shipment <i
+                                    data-lucide="arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Confirmation -->
+                    <div class="form-step" id="step-3">
+                        <h2 class="step-title">Confirm & Calculate</h2>
+                        <p class="step-desc">Review your details and get an estimate.</p>
+
+                        <div class="confirmation-summary">
+                            <div class="summary-item">
+                                <span class="label">Pickup Location:</span>
+                                <span class="value" id="summary-pickup">Searching...</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Dropoff Location:</span>
+                                <span class="value" id="summary-dropoff">Searching...</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Category:</span>
+                                <span class="value" id="summary-category">Not Selected</span>
+                            </div>
+                            <div class="summary-divider"></div>
+                            <div class="summary-item total">
+                                <span class="label">Estimated Cost:</span>
+                                <span class="value" id="summary-cost">₦0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="secondary-btn prev-step"><i data-lucide="arrow-left"></i>
+                                Back</button>
+                            <button type="submit" class="primary-btn calculate-btn">Confirm Shipment <i
+                                    data-lucide="check"></i></button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Map Section -->
+                <div id="map-section" style="margin-top: 40px; animation: slideUp 0.6s ease-out forwards;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="font-weight: 800; font-size: 16px;">Live Route Visualization</h3>
+                        <p style="font-size: 13px; color: var(--text-muted);">Markers appear as you type addresses.</p>
+                    </div>
+                    <div id="shipmentMap"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- USER DASHBOARD SCRIPT -->
+    <script src="js files/user-dashboard.js"></script>
+    <script>
+        lucide.createIcons();
+        if (typeof initShipmentMap === 'function') {
+            initShipmentMap();
+        }
+    </script>
+</body>
+
+</html>

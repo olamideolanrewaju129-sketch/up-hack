@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initUserDetails() {
-    const userName = localStorage.getItem('userName') || 'Shipper User';
-    const userEmail = localStorage.getItem('userEmail') || 'shipper@upside.com';
+    const userName = localStorage.getItem('userName') || 'Upside Member';
+    const userEmail = localStorage.getItem('userEmail') || 'member@upsidelogistics.com';
 
-    document.getElementById('userNameDisplay').innerText = userName.split(' ')[0];
+    const nameDisplay = document.getElementById('userNameDisplay');
+    if (nameDisplay) nameDisplay.innerText = userName.split(' ')[0];
     const nameFull = document.getElementById('userNameFull');
     if (nameFull) nameFull.innerText = userName;
 
@@ -33,7 +34,7 @@ function initUserDetails() {
     if (avatar) avatar.innerText = initials || 'U';
 }
 
-const mockShipments = [
+let allShipments = JSON.parse(localStorage.getItem('upside_shipments')) || [
     { id: '#UP-10294', dest: 'Victoria Island, Lagos', status: 'In Transit', date: 'Today, 4:00 PM' },
     { id: '#UP-10295', dest: 'Ajah, Lagos', status: 'In Transit', date: 'Today, 2:00 PM' },
     { id: '#UP-10296', dest: 'Maryland, Lagos', status: 'In Transit', date: 'Yesterday' },
@@ -46,17 +47,21 @@ const mockShipments = [
     { id: '#UP-10250', dest: 'Epe, Lagos', status: 'Delivered', date: 'Jan 20' }
 ];
 
+function saveShipments() {
+    localStorage.setItem('upside_shipments', JSON.stringify(allShipments));
+}
+
 function renderRecentShipments(filter = 'all') {
     const tbody = document.getElementById('recentShipmentsBody');
     const titleEl = document.getElementById('shipments-section-title');
     if (!tbody) return;
 
-    let filteredData = mockShipments;
+    let filteredData = allShipments;
     if (filter === 'active') {
-        filteredData = mockShipments.filter(s => s.status === 'In Transit');
+        filteredData = allShipments.filter(s => s.status === 'In Transit');
         if (titleEl) titleEl.innerText = 'Active Shipments';
     } else if (filter === 'delivered') {
-        filteredData = mockShipments.filter(s => s.status === 'Delivered');
+        filteredData = allShipments.filter(s => s.status === 'Delivered');
         if (titleEl) titleEl.innerText = 'Delivered Shipments';
     } else {
         if (titleEl) titleEl.innerText = 'Recent Shipments';
@@ -68,8 +73,36 @@ function renderRecentShipments(filter = 'all') {
             <td>${s.dest}</td>
             <td><span class="status-badge ${s.status.toLowerCase().replace(' ', '-')}">${s.status}</span></td>
             <td>${s.date}</td>
+            ${filter === 'active' || (filter === 'all' && s.status === 'In Transit') ? `
+                <td>
+                    <button class="icon-btn cancel-btn" title="Cancel Shipment" onclick="cancelShipment('${s.id}')">
+                        <i data-lucide="x-circle" style="color: #ef4444; width: 18px; height: 18px;"></i>
+                    </button>
+                </td>
+            ` : '<td></td>'}
         </tr>
     `).join('');
+    lucide.createIcons();
+}
+
+/**
+ * CANCEL SHIPMENT LOGIC
+ */
+window.cancelShipment = function (shipmentId) {
+    if (confirm(`Are you sure you want to cancel shipment ${shipmentId}?`)) {
+        const shipmentIndex = allShipments.findIndex(s => s.id === shipmentId);
+        if (shipmentIndex > -1) {
+            allShipments[shipmentIndex].status = 'Cancelled';
+            saveShipments();
+
+            alert(`Shipment ${shipmentId} has been cancelled.`);
+
+            // Re-render based on current page
+            if (document.getElementById('recentShipmentsBody')) renderRecentShipments();
+            if (document.getElementById('fullShipmentsBody')) renderShipmentsPage();
+            if (document.getElementById('historyShipmentsBody')) initHistoryPage();
+        }
+    }
 }
 
 function initStatsInteractivity() {
@@ -99,6 +132,45 @@ function initTabs() {
             const tabId = item.getAttribute('data-tab');
             switchTab(tabId);
         });
+    });
+}
+
+// SETTINGS PAGE LOGIC
+window.initSettingsPage = function () {
+    const form = document.getElementById('profileForm');
+    const nameInput = document.getElementById('settingsName');
+    const emailInput = document.getElementById('settingsEmail');
+
+    if (!form) return;
+
+    // Load current values
+    nameInput.value = localStorage.getItem('userName') || '';
+    emailInput.value = localStorage.getItem('userEmail') || '';
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const newName = nameInput.value.trim();
+        const newEmail = emailInput.value.trim();
+
+        if (newName) localStorage.setItem('userName', newName);
+        if (newEmail) localStorage.setItem('userEmail', newEmail);
+
+        // Update display immediately
+        initUserDetails();
+
+        const btn = form.querySelector('.save-settings-btn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check"></i> Saved!';
+        btn.style.background = '#22c55e';
+        lucide.createIcons();
+
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            lucide.createIcons();
+            alert('Settings saved successfully!');
+        }, 2000);
     });
 }
 
@@ -203,10 +275,27 @@ function initShippingForm() {
         btn.disabled = true;
 
         setTimeout(() => {
-            alert(`Shipment Confirmed! Your rider will arrive shortly to pick up your ${selectedCategory} package.`);
+            const pickup = document.getElementById('pickupLocation').value;
+            const dropoff = document.getElementById('dropoffLocation').value;
+            const shipmentId = `#UP-${Math.floor(10000 + Math.random() * 90000)}`;
+
+            const newShipment = {
+                id: shipmentId,
+                dest: dropoff,
+                status: 'In Transit',
+                date: 'Just Now'
+            };
+
+            allShipments.unshift(newShipment);
+            saveShipments();
+
+            alert(`Shipment Confirmed! Your rider will arrive shortly to pick up your ${selectedCategory} package. Shipment ID: ${shipmentId}`);
             btn.innerHTML = originalText;
             btn.disabled = false;
-            // Optionally redirect or reset
+
+            // Re-render recent shipments on overview
+            if (document.getElementById('recentShipmentsBody')) renderRecentShipments();
+
             window.switchTab('overview');
             resetForm();
         }, 2000);
@@ -234,7 +323,7 @@ window.renderShipmentsPage = function () {
     let searchQuery = '';
 
     function render() {
-        let filtered = mockShipments;
+        let filtered = allShipments;
 
         // Apply Filter
         if (currentFilter === 'active') {
@@ -268,7 +357,14 @@ window.renderShipmentsPage = function () {
                 <td><span class="status-badge ${s.status.toLowerCase().replace(' ', '-')}">${s.status}</span></td>
                 <td>${s.date}</td>
                 <td>
-                    <button class="icon-btn" title="View Details" onclick="window.location.href='user-tracking.html?id=${s.id}'"><i data-lucide="eye"></i></button>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="icon-btn" title="View Details" onclick="window.location.href='user-tracking.html?id=${s.id}'"><i data-lucide="eye"></i></button>
+                        ${s.status === 'In Transit' ? `
+                            <button class="icon-btn cancel-btn" title="Cancel Shipment" onclick="cancelShipment('${s.id}')">
+                                <i data-lucide="trash-2" style="color: #ef4444;"></i>
+                            </button>
+                        ` : ''}
+                    </div>
                 </td>
             </tr>
         `).join('');
@@ -411,7 +507,7 @@ window.initHistoryPage = function () {
 
         // Render Shipments
         if (shipmentsBody) {
-            const historyShipments = mockShipments.filter(s => s.status === 'Delivered');
+            const historyShipments = allShipments.filter(s => s.status === 'Delivered');
             const filtered = historyShipments.filter(s =>
                 s.id.toLowerCase().includes(query) || s.dest.toLowerCase().includes(query)
             );
@@ -455,3 +551,143 @@ window.initHistoryPage = function () {
 
     render();
 };
+
+// STANDALONE SHIPMENT MAP LOGIC
+let shipmentMap = null;
+let pickupMarker = null;
+let dropoffMarker = null;
+let routeLine = null;
+
+window.initShipmentMap = function () {
+    const mapElement = document.getElementById('shipmentMap');
+    if (!mapElement) return;
+
+    // Initialize map centered on Lagos
+    shipmentMap = L.map('shipmentMap').setView([6.5244, 3.3792], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(shipmentMap);
+
+    const pickupInput = document.getElementById('pickupLocation');
+    const dropoffInput = document.getElementById('dropoffLocation');
+
+    if (pickupInput) {
+        pickupInput.addEventListener('input', debounce(() => {
+            updateMapMarker('pickup', pickupInput.value);
+        }, 800));
+    }
+
+    if (dropoffInput) {
+        dropoffInput.addEventListener('input', debounce(() => {
+            updateMapMarker('dropoff', dropoffInput.value);
+        }, 800));
+    }
+};
+
+function updateMapMarker(type, address) {
+    if (!address || address.length < 5) return;
+
+    // Simulated Geocoding (Lagos areas)
+    const locations = {
+        'ikeja': [6.6018, 3.3515],
+        'lekki': [6.4510, 3.4756],
+        'victoria island': [6.4281, 3.4219],
+        'ajah': [6.4673, 3.5701],
+        'yaba': [6.5095, 3.3711],
+        'surulere': [6.4994, 3.3424],
+        'maryland': [6.5714, 3.3667],
+        'oshodi': [6.5546, 3.3392],
+        'ikoyi': [6.4474, 3.4384],
+        'epe': [6.5841, 3.9839],
+        'badagry': [6.4158, 2.8812],
+        'ikorodu': [6.6194, 3.5105]
+    };
+
+    let coords = [6.5244 + (Math.random() - 0.5) * 0.1, 3.3792 + (Math.random() - 0.5) * 0.1]; // Default random Lagos
+
+    const lowerAddr = address.toLowerCase();
+    for (const key in locations) {
+        if (lowerAddr.includes(key)) {
+            coords = locations[key];
+            break;
+        }
+    }
+
+    if (type === 'pickup') {
+        if (pickupMarker) shipmentMap.removeLayer(pickupMarker);
+        pickupMarker = L.marker(coords, {
+            icon: L.divIcon({
+                className: 'custom-div-icon',
+                html: "<div style='background-color:#4f5dff; color:white; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border:3px solid white; box-shadow:0 2px 5px rgba(0,0,0,0.3); font-weight:bold;'>P</div>",
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            })
+        }).addTo(shipmentMap).bindPopup('Pickup: ' + address);
+    } else {
+        if (dropoffMarker) shipmentMap.removeLayer(dropoffMarker);
+        dropoffMarker = L.marker(coords, {
+            icon: L.divIcon({
+                className: 'custom-div-icon',
+                html: "<div style='background-color:#22c55e; color:white; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border:3px solid white; box-shadow:0 2px 5px rgba(0,0,0,0.3); font-weight:bold;'>D</div>",
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            })
+        }).addTo(shipmentMap).bindPopup('Dropoff: ' + address);
+    }
+
+    updateRoute();
+}
+
+function updateRoute() {
+    if (pickupMarker && dropoffMarker) {
+        const p1 = pickupMarker.getLatLng();
+        const p2 = dropoffMarker.getLatLng();
+
+        if (routeLine) shipmentMap.removeLayer(routeLine);
+        routeLine = L.polyline([p1, p2], { color: '#4f5dff', weight: 4, dashArray: '10, 10', opacity: 0.6 }).addTo(shipmentMap);
+
+        const group = new L.featureGroup([pickupMarker, dropoffMarker]);
+        shipmentMap.fitBounds(group.getBounds(), { padding: [50, 50] });
+    } else if (pickupMarker) {
+        shipmentMap.setView(pickupMarker.getLatLng(), 14);
+    } else if (dropoffMarker) {
+        shipmentMap.setView(dropoffMarker.getLatLng(), 14);
+    }
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// EXPENSE BREAKDOWN MODAL LOGIC
+window.showSpendingBreakdown = function () {
+    const modal = document.getElementById('spendingModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+}
+
+window.closeSpendingModal = function () {
+    const modal = document.getElementById('spendingModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+}
+
+// Close modal when clicking on overlay
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('spendingModal');
+    if (modal && e.target === modal) {
+        closeSpendingModal();
+    }
+});

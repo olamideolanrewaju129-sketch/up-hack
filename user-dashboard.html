@@ -29,7 +29,7 @@
                     <i data-lucide="layout-dashboard"></i>
                     <span>Overview</span>
                 </a>
-                <a href="user-dashboard.html?tab=send" class="nav-item" data-tab="send">
+                <a href="user-send-package.html" class="nav-item" data-tab="send">
                     <i data-lucide="package-plus"></i>
                     <span>Send Package</span>
                 </a>
@@ -45,7 +45,7 @@
                     <i data-lucide="history"></i>
                     <span>History</span>
                 </a>
-                <a href="#" class="nav-item" data-tab="settings">
+                <a href="user-settings.html" class="nav-item" data-tab="settings">
                     <i data-lucide="settings"></i>
                     <span>Settings</span>
                 </a>
@@ -132,143 +132,7 @@
                 </div>
             </div>
 
-            <!-- TAB CONTENT: SEND PACKAGE -->
-            <div id="tab-send" class="tab-content">
-                <div class="send-package-container">
-                    <!-- Progress Bar -->
-                    <div class="form-progress">
-                        <div class="progress-step active" data-step="1">
-                            <div class="step-num">1</div>
-                            <span>Details</span>
-                        </div>
-                        <div class="progress-line"></div>
-                        <div class="progress-step" data-step="2">
-                            <div class="step-num">2</div>
-                            <span>Category</span>
-                        </div>
-                        <div class="progress-line"></div>
-                        <div class="progress-step" data-step="3">
-                            <div class="step-num">3</div>
-                            <span>Confirm</span>
-                        </div>
-                    </div>
 
-                    <form id="shippingForm" class="multi-step-form">
-                        <!-- Step 1: Shipment Details -->
-                        <div class="form-step active" id="step-1">
-                            <h2 class="step-title">Shipment Details</h2>
-                            <p class="step-desc">Enter the sender and recipient information.</p>
-
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label><i data-lucide="user"></i> Sender Name</label>
-                                    <input type="text" id="senderName" placeholder="Full Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label><i data-lucide="phone"></i> Phone Number</label>
-                                    <input type="tel" placeholder="+234" required>
-                                </div>
-                                <div class="form-group full-width">
-                                    <label><i data-lucide="map-pin"></i> Pickup Location</label>
-                                    <input type="text" id="pickupLocation" placeholder="Full Address in Lagos (Pickup)"
-                                        required>
-                                </div>
-                                <div class="form-group full-width">
-                                    <label><i data-lucide="map-pin"></i> Dropoff Location</label>
-                                    <input type="text" id="dropoffLocation"
-                                        placeholder="Full Address in Lagos (Dropoff)" required>
-                                </div>
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="button" class="primary-btn next-step">Continue to Category <i
-                                        data-lucide="arrow-right"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Step 2: Package Category -->
-                        <div class="form-step" id="step-2">
-                            <h2 class="step-title">Package Category</h2>
-                            <p class="step-desc">Select the type of item you are sending.</p>
-
-                            <div class="category-grid">
-                                <div class="category-card" data-category="document">
-                                    <div class="category-icon"><i data-lucide="file-text"></i></div>
-                                    <div class="category-info">
-                                        <h4>Document</h4>
-                                        <p>Letters, legal papers</p>
-                                    </div>
-                                    <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
-                                </div>
-                                <div class="category-card" data-category="small">
-                                    <div class="category-icon"><i data-lucide="package"></i></div>
-                                    <div class="category-info">
-                                        <h4>Small Parcel</h4>
-                                        <p>Up to 2kg (Shoebox size)</p>
-                                    </div>
-                                    <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
-                                </div>
-                                <div class="category-card" data-category="medium">
-                                    <div class="category-icon"><i data-lucide="box"></i></div>
-                                    <div class="category-info">
-                                        <h4>Medium Box</h4>
-                                        <p>2-10kg (Desktop size)</p>
-                                    </div>
-                                    <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
-                                </div>
-                                <div class="category-card" data-category="large">
-                                    <div class="category-icon"><i data-lucide="truck"></i></div>
-                                    <div class="category-info">
-                                        <h4>Large Item</h4>
-                                        <p>Over 10kg (Furniture, etc)</p>
-                                    </div>
-                                    <div class="selection-indicator"><i data-lucide="check-circle"></i></div>
-                                </div>
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="button" class="secondary-btn prev-step"><i data-lucide="arrow-left"></i>
-                                    Back</button>
-                                <button type="button" class="primary-btn next-step">Finalize Shipment <i
-                                        data-lucide="arrow-right"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Confirmation -->
-                        <div class="form-step" id="step-3">
-                            <h2 class="step-title">Confirm & Calculate</h2>
-                            <p class="step-desc">Review your details and get an estimate.</p>
-
-                            <div class="confirmation-summary">
-                                <div class="summary-item">
-                                    <span class="label">Pickup Location:</span>
-                                    <span class="value" id="summary-pickup">Searching...</span>
-                                </div>
-                                <div class="summary-item">
-                                    <span class="label">Dropoff Location:</span>
-                                    <span class="value" id="summary-dropoff">Searching...</span>
-                                </div>
-                                <div class="summary-item">
-                                    <span class="label">Category:</span>
-                                    <span class="value" id="summary-category">Not Selected</span>
-                                </div>
-                                <div class="summary-divider"></div>
-                                <div class="summary-item total">
-                                    <span class="label">Estimated Cost:</span>
-                                    <span class="value" id="summary-cost">₦0.00</span>
-                                </div>
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="button" class="secondary-btn prev-step"><i data-lucide="arrow-left"></i>
-                                    Back</button>
-                                <button type="submit" class="primary-btn calculate-btn">Confirm Shipment <i
-                                        data-lucide="check"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
 
             <!-- TAB CONTENT: TRACKING -->
             <div id="tab-track" class="tab-content">
@@ -290,7 +154,7 @@
     </div>
 
     <!-- USER DASHBOARD SCRIPT -->
-    <script src="user-dashboard.js"></script>
+    <script src="js files/user-dashboard.js"></script>
     <script>
         lucide.createIcons();
     </script>

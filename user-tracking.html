@@ -30,7 +30,7 @@
                     <i data-lucide="layout-dashboard"></i>
                     <span>Overview</span>
                 </a>
-                <a href="user-dashboard.html?tab=send" class="nav-item">
+                <a href="user-send-package.html" class="nav-item">
                     <i data-lucide="package-plus"></i>
                     <span>Send Package</span>
                 </a>
@@ -46,7 +46,7 @@
                     <i data-lucide="history"></i>
                     <span>History</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="user-settings.html" class="nav-item" data-tab="settings">
                     <i data-lucide="settings"></i>
                     <span>Settings</span>
                 </a>
@@ -64,7 +64,7 @@
         <main class="main-content">
             <header class="header">
                 <div class="header-left">
-                    <h1>Real-time Tracking</h1>
+                    <h1>Hello, <span id="userNameDisplay">Shipper</span> 👋</h1>
                     <p style="color: var(--text-muted); font-size: 14px;">Monitor your package's journey in real-time.
                     </p>
                 </div>
@@ -150,7 +150,7 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- USER DASHBOARD SCRIPT -->
-    <script src="/js files/user-dashboard.js"></script>
+    <script src="js files/user-dashboard.js"></script>
     <script>
         lucide.createIcons();
     </script>

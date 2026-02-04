@@ -67,7 +67,15 @@
         document.getElementById('userLoginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
+
+            // Save email
             localStorage.setItem('userEmail', email);
+
+            // If no name exists, derive one from email for a better experience
+            if (!localStorage.getItem('userName')) {
+                const derivedName = email.split('@')[0].split('.').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
+                localStorage.setItem('userName', derivedName);
+            }
 
             const btn = e.target.querySelector('button');
             const originalText = btn.innerText;

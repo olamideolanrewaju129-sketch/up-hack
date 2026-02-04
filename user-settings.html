@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings – UpSide</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css files/user-dashboard.css">
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        .settings-section-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .settings-section-title i {
+            color: var(--primary);
+        }
+
+        .settings-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .settings-group.full-width {
+            grid-column: span 2;
+        }
+
+        .settings-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .settings-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .settings-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 93, 255, 0.1);
+        }
+
+        .settings-toggle-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .settings-toggle-item:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .toggle-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--primary);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        .save-settings-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .save-settings-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 93, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body class="user-dashboard">
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="images/logo-up.png" alt="UpSide Logo">
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="user-dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="user-send-package.html" class="nav-item">
+                    <i data-lucide="package-plus"></i>
+                    <span>Send Package</span>
+                </a>
+                <a href="user-shipments.html" class="nav-item">
+                    <i data-lucide="container"></i>
+                    <span>My Shipments</span>
+                </a>
+                <a href="user-tracking.html" class="nav-item">
+                    <i data-lucide="map-pin"></i>
+                    <span>Tracking</span>
+                </a>
+                <a href="user-history.html" class="nav-item">
+                    <i data-lucide="history"></i>
+                    <span>History</span>
+                </a>
+                <a href="user-settings.html" class="nav-item active">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-item logout-btn">
+                    <i data-lucide="log-out"></i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h1>Hello, <span id="userNameDisplay">Shipper</span> 👋</h1>
+                    <p style="color: var(--text-muted); font-size: 14px;">Manage your account preferences and security.
+                    </p>
+                </div>
+
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="avatar" id="userAvatar">U</div>
+                        <div class="details">
+                            <h4 style="font-size: 14px; font-weight: 700;" id="userNameFull">User Name</h4>
+                            <p style="font-size: 12px; color: var(--text-muted);" id="userEmail">user@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="settings-container">
+                <!-- Profile Section -->
+                <div class="settings-card">
+                    <h3 class="settings-section-title"><i data-lucide="user"></i> Personal Profile</h3>
+                    <form id="profileForm" class="settings-form-grid">
+                        <div class="settings-group">
+                            <label>Full Name</label>
+                            <input type="text" id="settingsName" placeholder="John Doe">
+                        </div>
+                        <div class="settings-group">
+                            <label>Email Address</label>
+                            <input type="email" id="settingsEmail" placeholder="john@example.com">
+                        </div>
+                        <div class="settings-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="settingsPhone" placeholder="+234 800 000 0000">
+                        </div>
+                        <div class="settings-group">
+                            <label>Language</label>
+                            <input type="text" value="English (Default)" readonly style="background: var(--bg-main);">
+                        </div>
+                        <button type="submit" class="save-settings-btn">Save Changes</button>
+                    </form>
+                </div>
+
+                <!-- Notifications Section -->
+                <div class="settings-card" style="animation-delay: 0.1s;">
+                    <h3 class="settings-section-title"><i data-lucide="bell"></i> Notification Preferences</h3>
+                    <div class="settings-toggle-item">
+                        <div class="toggle-info">
+                            <h4>Email Notifications</h4>
+                            <p>Receive shipment updates and receipts via email</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-toggle-item">
+                        <div class="toggle-info">
+                            <h4>Push Notifications</h4>
+                            <p>Get instant alerts when your rider is nearby</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-toggle-item">
+                        <div class="toggle-info">
+                            <h4>Marketing Updates</h4>
+                            <p>Occasional offers and new feature announcements</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Security Section -->
+                <div class="settings-card" style="animation-delay: 0.2s;">
+                    <h3 class="settings-section-title"><i data-lucide="shield"></i> Login & Security</h3>
+                    <div class="settings-form-grid">
+                        <div class="settings-group full-width">
+                            <label>Current Password</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+                        <div class="settings-group">
+                            <label>New Password</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+                        <div class="settings-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+                    </div>
+                    <button class="save-settings-btn" style="background: #22c55e;">Update Password</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- USER DASHBOARD SCRIPT -->
+    <script src="js files/user-dashboard.js"></script>
+    <script>
+        lucide.createIcons();
+        if (typeof initSettingsPage === 'function') {
+            initSettingsPage();
+        }
+    </script>
+</body>
+
+</html>
