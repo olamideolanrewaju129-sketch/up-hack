@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initUserDetails();
     handleQueryParams();
+    initMobileMenu();
 
     // Page-specific initializations
     if (document.getElementById('recentShipmentsBody')) renderRecentShipments();
@@ -32,6 +33,34 @@ function initUserDetails() {
     const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
     const avatar = document.getElementById('userAvatar');
     if (avatar) avatar.innerText = initials || 'U';
+}
+
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const dashboardContainer = document.querySelector('.dashboard-container');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            dashboardContainer.classList.toggle('sidebar-open');
+        });
+    }
+
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', () => {
+            dashboardContainer.classList.remove('sidebar-open');
+        });
+    }
+
+    // Close sidebar when clicking a nav item on mobile
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 1024) {
+                dashboardContainer.classList.remove('sidebar-open');
+            }
+        });
+    });
 }
 
 let allShipments = JSON.parse(localStorage.getItem('upside_shipments')) || [

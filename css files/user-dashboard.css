@@ -1091,14 +1091,126 @@ body {
     font-weight: 800;
 }
 
+/* MOBILE SIDEBAR OVERLAY */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 90;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* MOBILE MENU BUTTON */
+.mobile-menu-btn {
+    display: none;
+    background: white;
+    border: 1px solid var(--border);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: all 0.2s;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
 /* MOBILE RESPONSIVE */
 @media (max-width: 1024px) {
     .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
         transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 260px;
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.1);
     }
 
     .main-content {
         margin-left: 0;
+        padding: 24px 20px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    /* OPEN STATE */
+    .sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
+    .sidebar-open .sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        margin: -24px -20px 24px;
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .header-right .user-info .details {
+        display: none;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tracking-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .dashboard-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
         padding: 24px;
+    }
+
+    .top-up-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .management-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .filter-group {
+        width: 100%;
+        overflow-x: auto;
+        padding: 4px;
+    }
+
+    .shipment-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .shipment-brief {
+        flex-direction: column;
+        gap: 15px;
     }
 }

@@ -68,6 +68,16 @@ function initMobileMenu() {
             dashboardContainer.classList.remove('sidebar-open');
         });
     }
+
+    // Close sidebar when clicking a nav item on mobile
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                dashboardContainer.classList.remove('sidebar-open');
+            }
+        });
+    });
 }
 
 // --- DASHBOARD LOGIC ---
