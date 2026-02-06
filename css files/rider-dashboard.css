@@ -83,6 +83,7 @@ body.dashboard-body {
     display: flex;
     min-height: 100vh;
     position: relative;
+    overflow-x: hidden;
 }
 
 /* SIDEBAR */
@@ -1206,6 +1207,7 @@ input:checked+.slider:before {
         margin: -24px -20px 30px;
         padding: 20px;
         border-bottom: 1px solid var(--border-color);
+        width: calc(100% + 40px);
     }
 
     .mobile-menu-btn {
